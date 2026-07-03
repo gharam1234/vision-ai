@@ -1,0 +1,23 @@
+# Vision AI - 실시간 영상 처리 및 위험구역 감지
+# Core
+ultralytics>=8.3.0        # YOLOv11
+opencv-python>=4.8.0      # 영상 처리
+numpy>=1.24.0             # 수치 연산
+
+# Tracking
+supervision>=0.25.0       # ByteTrack 추적 + 유틸리티
+
+# Communication
+httpx>=0.27.0             # 비동기 REST API 클라이언트
+websockets>=12.0          # WebSocket 클라이언트
+
+# Configuration
+pydantic>=2.0.0           # 설정 관리
+pydantic-settings>=2.0.0  # 환경변수 기반 설정
+python-dotenv>=1.0.0      # .env 파일 로드
+
+# Utilities
+loguru>=0.7.0             # 로깅
+
+# Testing
+pytest>=7.0.0             # 테스트
