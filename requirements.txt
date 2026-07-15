@@ -1,7 +1,7 @@
 # Vision AI - 실시간 영상 처리 및 위험구역 감지
 # Core
-ultralytics>=8.3.40        # YOLO26 지원 최신 버전
-mediapipe>=0.10.0          # 제스처 및 자세 감지 용
+ultralytics>=8.4.95        # YOLO26 지원 최신 버전
+mediapipe==0.10.14         # macOS M 시리즈 호환 고정 버전
 opencv-python>=4.8.0      # 영상 처리
 numpy>=1.24.0             # 수치 연산
 

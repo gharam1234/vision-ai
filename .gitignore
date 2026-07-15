@@ -1,0 +1,43 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ===== 환경 설정 (비밀정보) =====
+.env
+
+# ===== YOLO 모델 파일 (대용량) =====
+*.pt
+
+# ===== 로그 =====
+logs/
+
+# ===== 스냅샷 (런타임 생성) =====
+snapshots/
+received_snapshots/
+
+# ===== 테스트/캐시 =====
+.pytest_cache/
+htmlcov/
+.coverage
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# ===== 디버그/임시 파일 =====
+debug_*.py
+
+# ===== 개발 내부 문서 =====
+implementation_plan*.md
+task.md
+walkthrough.md
+performance_report.md
