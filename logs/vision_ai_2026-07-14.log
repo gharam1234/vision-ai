@@ -1,0 +1,1369 @@
+2026-07-14 09:05:53 | INFO     | __main__:main:142 | ============================================================
+2026-07-14 09:05:53 | INFO     | __main__:main:143 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-14 09:05:53 | INFO     | __main__:main:144 | ============================================================
+2026-07-14 09:05:53 | INFO     | __main__:main:145 | 영상 소스: sample.mp4
+2026-07-14 09:05:53 | INFO     | __main__:main:146 | YOLO 모델: yolo11n.pt
+2026-07-14 09:05:53 | INFO     | __main__:main:147 | 카메라 ID: cam-001
+2026-07-14 09:05:53 | INFO     | __main__:main:148 | 디스플레이: ON
+2026-07-14 09:05:53 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-14 09:05:53 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-14 09:05:53 | INFO     | core.detector:__init__:56 | YOLO 모델 로딩: yolo11n.pt (디바이스: cpu)
+2026-07-14 09:05:53 | INFO     | core.detector:__init__:59 | PersonDetector 초기화 완료 (confidence=0.3, iou=0.45, img_size=640)
+2026-07-14 09:05:53 | INFO     | core.tracker:__init__:51 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-14 09:05:53 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-14 09:05:53 | INFO     | processing.intrusion_detector:__init__:121 | IntrusionDetector 초기화 완료 (하이브리드) (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.4)
+2026-07-14 09:05:53 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-14 09:05:53 | INFO     | communication.event_sender:start:207 | 이벤트 전송기 시작됨
+2026-07-14 09:05:53 | INFO     | core.mediapipe_detector:__init__:40 | MediaPipe Detector (solutions.pose/hands) 초기화 완료 (하이브리드)
+2026-07-14 09:05:53 | INFO     | processing.frame_processor:__init__:62 | FrameProcessor 초기화 완료 (MediaPipe 하이브리드 연동)
+2026-07-14 09:05:53 | INFO     | __main__:main:266 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-14 09:05:53 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:05:53 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:05:55 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#1 비상정지 감지!
+2026-07-14 09:05:55 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker1_global_20260714_090555.jpg
+2026-07-14 09:05:55 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#1 → 전체 영역 (fall_down)
+2026-07-14 09:05:56 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:05:56 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:05:59 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:05:59 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:02 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 09:06:02 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_090602.jpg
+2026-07-14 09:06:02 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:06:02 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:02 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:04 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 09:06:04 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:06:05 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:05 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:08 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:08 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:11 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:11 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:13 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:06:14 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#2 비상정지 감지!
+2026-07-14 09:06:14 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker2_global_20260714_090614.jpg
+2026-07-14 09:06:14 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (fall_down)
+2026-07-14 09:06:14 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:14 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:16 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:06:16 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_090616.jpg
+2026-07-14 09:06:16 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:06:17 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:17 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:18 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:06:18 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:06:20 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:20 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:21 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:06:21 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_090621.jpg
+2026-07-14 09:06:21 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:06:23 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (100프레임) | YOLO감지: 69.6ms | 추적: 1.1ms | MediaPipe: 193.1ms | 위협연산: 0.1ms | 렌더: 6.7ms | 평균: 270.6ms (3.7 FPS)
+2026-07-14 09:06:23 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:06:23 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:06:23 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:23 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:26 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:26 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:29 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:29 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:32 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:06:32 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:06:32 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:06:33 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#5 비상정지 감지!
+2026-07-14 09:06:33 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker5_global_20260714_090633.jpg
+2026-07-14 09:06:33 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (fall_down)
+2026-07-14 09:06:34 | INFO     | __main__:main:289 | 'q' 키 입력 - 종료
+2026-07-14 09:06:34 | INFO     | __main__:main:314 | 시스템 종료 중...
+2026-07-14 09:06:34 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-14 09:06:34 | INFO     | communication.event_sender:stop:338 | 이벤트 전송기 중지됨 (전송: 0, 실패: 9)
+2026-07-14 09:06:34 | INFO     | __main__:main:325 | 📊 최종 성능 통계 | 총 138프레임 | 감지: 68.4ms | 추적: 1.1ms | 침입: 0.1ms | 렌더: 6.6ms
+2026-07-14 09:06:34 | INFO     | __main__:main:335 | 📤 이벤트 통계 | 전송: 0 | 실패: 9 | WS: 0 | REST: 0
+2026-07-14 09:06:34 | INFO     | __main__:main:343 | ✅ 시스템 종료 완료
+2026-07-14 09:06:34 | INFO     | core.mediapipe_detector:close:141 | MediaPipe Detector 리소스 정리 완료
+2026-07-14 09:19:49 | INFO     | __main__:main:142 | ============================================================
+2026-07-14 09:19:49 | INFO     | __main__:main:143 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-14 09:19:49 | INFO     | __main__:main:144 | ============================================================
+2026-07-14 09:19:49 | INFO     | __main__:main:145 | 영상 소스: sample.mp4aw
+2026-07-14 09:19:49 | INFO     | __main__:main:146 | YOLO 모델: yolo11n.pt
+2026-07-14 09:19:49 | INFO     | __main__:main:147 | 카메라 ID: cam-001
+2026-07-14 09:19:49 | INFO     | __main__:main:148 | 디스플레이: ON
+2026-07-14 09:19:49 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4aw
+2026-07-14 09:19:49 | ERROR    | processing.video_source:open:80 | 영상 파일을 열 수 없습니다: sample.mp4aw
+2026-07-14 09:19:49 | ERROR    | __main__:main:164 | 영상 소스 열기 실패. 프로그램을 종료합니다.
+2026-07-14 09:20:09 | INFO     | __main__:main:142 | ============================================================
+2026-07-14 09:20:09 | INFO     | __main__:main:143 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-14 09:20:09 | INFO     | __main__:main:144 | ============================================================
+2026-07-14 09:20:09 | INFO     | __main__:main:145 | 영상 소스: sample.mp4
+2026-07-14 09:20:09 | INFO     | __main__:main:146 | YOLO 모델: yolo11n.pt
+2026-07-14 09:20:09 | INFO     | __main__:main:147 | 카메라 ID: cam-001
+2026-07-14 09:20:09 | INFO     | __main__:main:148 | 디스플레이: ON
+2026-07-14 09:20:09 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-14 09:20:09 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-14 09:20:09 | INFO     | core.detector:__init__:56 | YOLO 모델 로딩: yolo11n.pt (디바이스: cpu)
+2026-07-14 09:20:09 | INFO     | core.detector:__init__:59 | PersonDetector 초기화 완료 (confidence=0.3, iou=0.45, img_size=640)
+2026-07-14 09:20:09 | INFO     | core.tracker:__init__:51 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-14 09:20:09 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-14 09:20:09 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-14 09:20:09 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-14 09:20:09 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-14 09:20:09 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-14 09:20:09 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-14 09:20:09 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-14 09:20:09 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-14 09:20:09 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-14 09:20:09 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-14 09:20:12 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (729, 303) | 현재 총 1개
+2026-07-14 09:20:13 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (754, 325) | 현재 총 2개
+2026-07-14 09:20:13 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (819, 329) | 현재 총 3개
+2026-07-14 09:20:13 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (821, 301) | 현재 총 4개
+2026-07-14 09:20:14 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (727, 300) | 현재 총 5개
+2026-07-14 09:20:14 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-14 09:20:14 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-14 09:20:15 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: Danger-Zone-1 (drawn-zone-1)
+2026-07-14 09:20:15 | INFO     | processing.intrusion_detector:__init__:121 | IntrusionDetector 초기화 완료 (하이브리드) (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.4)
+2026-07-14 09:20:15 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-14 09:20:15 | INFO     | communication.event_sender:start:207 | 이벤트 전송기 시작됨
+2026-07-14 09:20:15 | INFO     | core.mediapipe_detector:__init__:40 | MediaPipe Detector (solutions.pose/hands) 초기화 완료 (하이브리드)
+2026-07-14 09:20:15 | INFO     | processing.frame_processor:__init__:62 | FrameProcessor 초기화 완료 (MediaPipe 하이브리드 연동)
+2026-07-14 09:20:15 | INFO     | __main__:main:266 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-14 09:20:15 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:15 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:16 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#1 비상정지 감지!
+2026-07-14 09:20:16 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker1_global_20260714_092016.jpg
+2026-07-14 09:20:16 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#1 → 전체 영역 (fall_down)
+2026-07-14 09:20:18 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:18 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:21 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:21 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:23 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 09:20:23 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_092023.jpg
+2026-07-14 09:20:23 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:20:24 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:24 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:25 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 09:20:25 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:20:27 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:27 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:30 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:30 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:33 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:33 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:35 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:20:35 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#2 비상정지 감지!
+2026-07-14 09:20:35 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker2_global_20260714_092035.jpg
+2026-07-14 09:20:36 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (fall_down)
+2026-07-14 09:20:36 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:36 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:37 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:20:37 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_092037.jpg
+2026-07-14 09:20:37 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:20:39 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:39 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:39 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:20:40 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:20:42 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:42 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:43 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:20:43 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_092043.jpg
+2026-07-14 09:20:43 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:20:45 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:45 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:45 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (100프레임) | YOLO감지: 75.7ms | 추적: 1.1ms | MediaPipe: 194.1ms | 위협연산: 0.2ms | 렌더: 6.8ms | 평균: 277.9ms (3.6 FPS)
+2026-07-14 09:20:45 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:20:45 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:20:48 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:48 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:51 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:51 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:54 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:54 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:54 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:20:55 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#5 비상정지 감지!
+2026-07-14 09:20:55 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker5_global_20260714_092055.jpg
+2026-07-14 09:20:55 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (fall_down)
+2026-07-14 09:20:57 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#8 양팔 교차 감지
+2026-07-14 09:20:57 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker8_global_20260714_092057.jpg
+2026-07-14 09:20:57 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:20:57 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:20:57 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:20:59 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#8 양팔 교차 해제
+2026-07-14 09:20:59 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:21:00 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:00 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:03 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#8 양팔 교차 감지
+2026-07-14 09:21:03 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker8_global_20260714_092103.jpg
+2026-07-14 09:21:03 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:21:03 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:03 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:04 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#8 양팔 교차 해제
+2026-07-14 09:21:04 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:21:06 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:06 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:09 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:09 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:12 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:12 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:14 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:21:14 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#8 비상정지 감지!
+2026-07-14 09:21:14 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker8_global_20260714_092114.jpg
+2026-07-14 09:21:14 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → 전체 영역 (fall_down)
+2026-07-14 09:21:15 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:15 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:15 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (200프레임) | YOLO감지: 73.2ms | 추적: 1.1ms | MediaPipe: 198.0ms | 위협연산: 0.2ms | 렌더: 6.8ms | 평균: 279.2ms (3.6 FPS)
+2026-07-14 09:21:16 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#11 양팔 교차 감지
+2026-07-14 09:21:16 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker11_global_20260714_092116.jpg
+2026-07-14 09:21:16 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#11 → 전체 영역 (gesture_x)
+2026-07-14 09:21:18 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:18 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:18 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#11 양팔 교차 해제
+2026-07-14 09:21:18 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#11 → 전체 영역 (gesture_x)
+2026-07-14 09:21:21 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:21 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:22 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#11 양팔 교차 감지
+2026-07-14 09:21:22 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker11_global_20260714_092122.jpg
+2026-07-14 09:21:22 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#11 → 전체 영역 (gesture_x)
+2026-07-14 09:21:24 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:24 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:24 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#11 양팔 교차 해제
+2026-07-14 09:21:24 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#11 → 전체 영역 (gesture_x)
+2026-07-14 09:21:27 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:27 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:30 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:30 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:33 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:33 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:34 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:21:34 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#11 비상정지 감지!
+2026-07-14 09:21:34 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker11_global_20260714_092134.jpg
+2026-07-14 09:21:35 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#11 → 전체 영역 (fall_down)
+2026-07-14 09:21:36 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:36 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:36 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#14 양팔 교차 감지
+2026-07-14 09:21:36 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker14_global_20260714_092136.jpg
+2026-07-14 09:21:36 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#14 → 전체 영역 (gesture_x)
+2026-07-14 09:21:39 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#14 양팔 교차 해제
+2026-07-14 09:21:39 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:39 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:39 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#14 → 전체 영역 (gesture_x)
+2026-07-14 09:21:42 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:42 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:43 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#14 양팔 교차 감지
+2026-07-14 09:21:43 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker14_global_20260714_092143.jpg
+2026-07-14 09:21:43 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#14 → 전체 영역 (gesture_x)
+2026-07-14 09:21:45 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:45 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:45 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#14 양팔 교차 해제
+2026-07-14 09:21:45 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#14 → 전체 영역 (gesture_x)
+2026-07-14 09:21:48 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:48 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:48 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (300프레임) | YOLO감지: 76.2ms | 추적: 1.1ms | MediaPipe: 204.9ms | 위협연산: 0.2ms | 렌더: 6.5ms | 평균: 288.8ms (3.5 FPS)
+2026-07-14 09:21:51 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:51 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:54 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:54 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:56 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:21:57 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#14 비상정지 감지!
+2026-07-14 09:21:57 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker14_global_20260714_092157.jpg
+2026-07-14 09:21:57 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:21:57 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:21:57 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#14 → 전체 영역 (fall_down)
+2026-07-14 09:21:59 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#17 양팔 교차 감지
+2026-07-14 09:21:59 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker17_global_20260714_092159.jpg
+2026-07-14 09:21:59 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#17 → 전체 영역 (gesture_x)
+2026-07-14 09:22:00 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:22:00 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:22:00 | INFO     | __main__:main:289 | 'q' 키 입력 - 종료
+2026-07-14 09:22:00 | INFO     | __main__:main:314 | 시스템 종료 중...
+2026-07-14 09:22:00 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-14 09:22:00 | INFO     | communication.event_sender:stop:338 | 이벤트 전송기 중지됨 (전송: 0, 실패: 25)
+2026-07-14 09:22:00 | INFO     | __main__:main:325 | 📊 최종 성능 통계 | 총 337프레임 | 감지: 77.0ms | 추적: 1.1ms | 침입: 0.2ms | 렌더: 6.5ms
+2026-07-14 09:22:00 | INFO     | __main__:main:335 | 📤 이벤트 통계 | 전송: 0 | 실패: 25 | WS: 0 | REST: 0
+2026-07-14 09:22:00 | INFO     | __main__:main:343 | ✅ 시스템 종료 완료
+2026-07-14 09:22:00 | INFO     | core.mediapipe_detector:close:141 | MediaPipe Detector 리소스 정리 완료
+2026-07-14 09:24:06 | INFO     | __main__:main:142 | ============================================================
+2026-07-14 09:24:06 | INFO     | __main__:main:143 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-14 09:24:06 | INFO     | __main__:main:144 | ============================================================
+2026-07-14 09:24:06 | INFO     | __main__:main:145 | 영상 소스: sample.mp4
+2026-07-14 09:24:06 | INFO     | __main__:main:146 | YOLO 모델: yolo11n.pt
+2026-07-14 09:24:06 | INFO     | __main__:main:147 | 카메라 ID: cam-001
+2026-07-14 09:24:06 | INFO     | __main__:main:148 | 디스플레이: ON
+2026-07-14 09:24:06 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-14 09:24:06 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-14 09:24:06 | INFO     | core.detector:__init__:56 | YOLO 모델 로딩: yolo11n.pt (디바이스: cpu)
+2026-07-14 09:24:06 | INFO     | core.detector:__init__:59 | PersonDetector 초기화 완료 (confidence=0.3, iou=0.45, img_size=640)
+2026-07-14 09:24:06 | INFO     | core.tracker:__init__:51 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-14 09:24:06 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-14 09:24:06 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-14 09:24:06 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-14 09:24:06 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-14 09:24:06 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-14 09:24:06 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-14 09:24:06 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-14 09:24:06 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-14 09:24:06 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-14 09:24:06 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-14 09:24:09 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (733, 308) | 현재 총 1개
+2026-07-14 09:24:10 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (735, 323) | 현재 총 2개
+2026-07-14 09:24:11 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (828, 331) | 현재 총 3개
+2026-07-14 09:24:11 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (846, 304) | 현재 총 4개
+2026-07-14 09:24:12 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (728, 301) | 현재 총 5개
+2026-07-14 09:24:13 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-14 09:24:13 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-14 09:24:13 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: Danger-Zone-1 (drawn-zone-1)
+2026-07-14 09:24:13 | INFO     | processing.intrusion_detector:__init__:121 | IntrusionDetector 초기화 완료 (하이브리드) (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.4)
+2026-07-14 09:24:13 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-14 09:24:13 | INFO     | communication.event_sender:start:207 | 이벤트 전송기 시작됨
+2026-07-14 09:24:13 | INFO     | core.mediapipe_detector:__init__:40 | MediaPipe Detector (solutions.pose/hands) 초기화 완료 (하이브리드)
+2026-07-14 09:24:13 | INFO     | processing.frame_processor:__init__:62 | FrameProcessor 초기화 완료 (MediaPipe 하이브리드 연동)
+2026-07-14 09:24:13 | INFO     | __main__:main:266 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-14 09:24:13 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:13 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:14 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#1 비상정지 감지!
+2026-07-14 09:24:14 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker1_global_20260714_092414.jpg
+2026-07-14 09:24:14 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#1 → 전체 영역 (fall_down)
+2026-07-14 09:24:16 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:16 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:19 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:19 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:22 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:22 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:22 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 09:24:22 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_092422.jpg
+2026-07-14 09:24:22 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:24:23 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 09:24:23 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_092423.jpg
+2026-07-14 09:24:23 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:24:24 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 09:24:24 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:24:25 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:25 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:27 | INFO     | processing.intrusion_detector:check_intrusions:235 | ✅ [비상정지 해제] 작업자#4 상태 정상화
+2026-07-14 09:24:27 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:24:28 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:28 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:29 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 09:24:29 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_092429.jpg
+2026-07-14 09:24:29 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:24:31 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:31 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:34 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:34 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:34 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:24:35 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#2 비상정지 감지!
+2026-07-14 09:24:35 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker2_global_20260714_092435.jpg
+2026-07-14 09:24:35 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (fall_down)
+2026-07-14 09:24:37 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:24:37 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_092437.jpg
+2026-07-14 09:24:37 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:24:37 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:37 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:39 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:24:39 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:24:40 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:40 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:43 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:43 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:44 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:24:44 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_092444.jpg
+2026-07-14 09:24:44 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:24:44 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 09:24:44 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_092444.jpg
+2026-07-14 09:24:44 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:24:45 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (100프레임) | YOLO감지: 82.1ms | 추적: 1.2ms | MediaPipe: 206.1ms | 위협연산: 0.2ms | 렌더: 6.8ms | 평균: 296.2ms (3.4 FPS)
+2026-07-14 09:24:45 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:24:45 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:24:46 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:46 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:48 | INFO     | processing.intrusion_detector:check_intrusions:235 | ✅ [비상정지 해제] 작업자#7 상태 정상화
+2026-07-14 09:24:48 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:24:49 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:49 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:51 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 09:24:51 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_092451.jpg
+2026-07-14 09:24:51 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:24:52 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:52 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:55 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:55 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:57 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:24:57 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#5 비상정지 감지!
+2026-07-14 09:24:57 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker5_global_20260714_092457.jpg
+2026-07-14 09:24:58 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (fall_down)
+2026-07-14 09:24:58 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:24:58 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:24:59 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#8 양팔 교차 감지
+2026-07-14 09:24:59 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker8_global_20260714_092459.jpg
+2026-07-14 09:24:59 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:25:01 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:25:01 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:25:02 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#8 양팔 교차 해제
+2026-07-14 09:25:02 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:25:04 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:25:04 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:25:06 | WARNING  | processing.intrusion_detector:check_intrusions:167 | ⚠️ [제스처 X 감지] 작업자#8 양팔 교차 감지
+2026-07-14 09:25:06 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker8_global_20260714_092506.jpg
+2026-07-14 09:25:06 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:25:06 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#10 비상정지 감지!
+2026-07-14 09:25:06 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker10_global_20260714_092506.jpg
+2026-07-14 09:25:06 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#10 → 전체 영역 (fall_down)
+2026-07-14 09:25:07 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:25:07 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:25:08 | INFO     | processing.intrusion_detector:check_intrusions:181 | ✅ [제스처 X 해제] 작업자#8 양팔 교차 해제
+2026-07-14 09:25:08 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:25:10 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:25:10 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:25:11 | INFO     | processing.intrusion_detector:check_intrusions:235 | ✅ [비상정지 해제] 작업자#10 상태 정상화
+2026-07-14 09:25:11 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#10 → 전체 영역 (fall_down)
+2026-07-14 09:25:13 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#10 비상정지 감지!
+2026-07-14 09:25:13 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker10_global_20260714_092513.jpg
+2026-07-14 09:25:13 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#10 → 전체 영역 (fall_down)
+2026-07-14 09:25:13 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:25:13 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:25:16 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:25:16 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:25:19 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:25:19 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:25:19 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:25:20 | INFO     | __main__:signal_handler:258 | 종료 신호 수신 - 안전하게 종료 중...
+2026-07-14 09:25:20 | ERROR    | processing.intrusion_detector:check_intrusions:221 | 🚨 [비상정지!!] 작업자#8 비상정지 감지!
+2026-07-14 09:25:20 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker8_global_20260714_092520.jpg
+2026-07-14 09:25:20 | INFO     | __main__:main:314 | 시스템 종료 중...
+2026-07-14 09:25:20 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-14 09:25:20 | INFO     | communication.event_sender:stop:338 | 이벤트 전송기 중지됨 (전송: 0, 실패: 22)
+2026-07-14 09:25:20 | INFO     | __main__:main:325 | 📊 최종 성능 통계 | 총 197프레임 | 감지: 89.8ms | 추적: 1.2ms | 침입: 0.2ms | 렌더: 7.0ms
+2026-07-14 09:25:20 | INFO     | __main__:main:335 | 📤 이벤트 통계 | 전송: 0 | 실패: 22 | WS: 0 | REST: 0
+2026-07-14 09:25:20 | INFO     | __main__:main:343 | ✅ 시스템 종료 완료
+2026-07-14 09:25:20 | INFO     | core.mediapipe_detector:close:137 | MediaPipe Detector 리소스 정리 완료
+2026-07-14 09:27:55 | INFO     | __main__:main:142 | ============================================================
+2026-07-14 09:27:55 | INFO     | __main__:main:143 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-14 09:27:55 | INFO     | __main__:main:144 | ============================================================
+2026-07-14 09:27:55 | INFO     | __main__:main:145 | 영상 소스: sample.mp4
+2026-07-14 09:27:55 | INFO     | __main__:main:146 | YOLO 모델: yolo11n.pt
+2026-07-14 09:27:55 | INFO     | __main__:main:147 | 카메라 ID: cam-001
+2026-07-14 09:27:55 | INFO     | __main__:main:148 | 디스플레이: ON
+2026-07-14 09:27:55 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-14 09:27:55 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-14 09:27:55 | INFO     | core.detector:__init__:56 | YOLO 모델 로딩: yolo11n.pt (디바이스: cpu)
+2026-07-14 09:27:55 | INFO     | core.detector:__init__:59 | PersonDetector 초기화 완료 (confidence=0.3, iou=0.45, img_size=640)
+2026-07-14 09:27:55 | INFO     | core.tracker:__init__:51 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-14 09:27:55 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-14 09:27:55 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-14 09:27:55 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-14 09:27:55 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-14 09:27:55 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-14 09:27:55 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-14 09:27:55 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-14 09:27:55 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-14 09:27:55 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-14 09:27:55 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-14 09:27:59 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (727, 310) | 현재 총 1개
+2026-07-14 09:27:59 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (730, 337) | 현재 총 2개
+2026-07-14 09:28:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (834, 325) | 현재 총 3개
+2026-07-14 09:28:01 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (825, 295) | 현재 총 4개
+2026-07-14 09:28:01 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (721, 301) | 현재 총 5개
+2026-07-14 09:28:02 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-14 09:28:02 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-14 09:28:02 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: Danger-Zone-1 (drawn-zone-1)
+2026-07-14 09:28:02 | INFO     | processing.intrusion_detector:__init__:178 | IntrusionDetector 초기화 완료 (하이브리드) (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.4)
+2026-07-14 09:28:02 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-14 09:28:02 | INFO     | communication.event_sender:start:207 | 이벤트 전송기 시작됨
+2026-07-14 09:28:02 | INFO     | core.mediapipe_detector:__init__:40 | MediaPipe Detector (solutions.pose/hands) 초기화 완료 (하이브리드)
+2026-07-14 09:28:02 | INFO     | processing.frame_processor:__init__:62 | FrameProcessor 초기화 완료 (MediaPipe 하이브리드 연동)
+2026-07-14 09:28:02 | INFO     | __main__:main:266 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-14 09:28:02 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:02 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:03 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#1 비상정지 감지!
+2026-07-14 09:28:03 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker1_global_20260714_092803.jpg
+2026-07-14 09:28:03 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#1 → 전체 영역 (fall_down)
+2026-07-14 09:28:05 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:05 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:08 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:08 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:11 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:11 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:11 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 09:28:11 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_092811.jpg
+2026-07-14 09:28:11 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:28:12 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 09:28:12 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_092812.jpg
+2026-07-14 09:28:12 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:28:13 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 09:28:13 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:28:14 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:14 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:15 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#4 상태 정상화
+2026-07-14 09:28:15 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:28:17 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 09:28:17 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_092817.jpg
+2026-07-14 09:28:17 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:28:17 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:17 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:20 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:20 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:23 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:28:23 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:23 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:23 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#2 비상정지 감지!
+2026-07-14 09:28:24 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker2_global_20260714_092823.jpg
+2026-07-14 09:28:24 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (fall_down)
+2026-07-14 09:28:25 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:28:25 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_092825.jpg
+2026-07-14 09:28:25 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:28:26 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:26 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:27 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:28:28 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:28:29 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:29 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:32 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:28:32 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_092832.jpg
+2026-07-14 09:28:32 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:28:32 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 09:28:32 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_092832.jpg
+2026-07-14 09:28:32 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:28:32 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:32 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:33 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (100프레임) | YOLO감지: 78.2ms | 추적: 1.1ms | MediaPipe: 200.4ms | 위협연산: 0.2ms | 렌더: 6.7ms | 평균: 286.6ms (3.5 FPS)
+2026-07-14 09:28:33 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:28:33 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:28:35 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:28:35 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:28:35 | INFO     | __main__:signal_handler:258 | 종료 신호 수신 - 안전하게 종료 중...
+2026-07-14 09:28:35 | INFO     | __main__:main:314 | 시스템 종료 중...
+2026-07-14 09:28:35 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-14 09:28:36 | INFO     | communication.event_sender:stop:338 | 이벤트 전송기 중지됨 (전송: 0, 실패: 12)
+2026-07-14 09:28:36 | INFO     | __main__:main:325 | 📊 최종 성능 통계 | 총 107프레임 | 감지: 78.3ms | 추적: 1.1ms | 침입: 0.2ms | 렌더: 6.7ms
+2026-07-14 09:28:36 | INFO     | __main__:main:335 | 📤 이벤트 통계 | 전송: 0 | 실패: 12 | WS: 0 | REST: 0
+2026-07-14 09:28:36 | INFO     | __main__:main:343 | ✅ 시스템 종료 완료
+2026-07-14 09:28:36 | INFO     | core.mediapipe_detector:close:137 | MediaPipe Detector 리소스 정리 완료
+2026-07-14 09:31:46 | INFO     | __main__:main:142 | ============================================================
+2026-07-14 09:31:46 | INFO     | __main__:main:143 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-14 09:31:46 | INFO     | __main__:main:144 | ============================================================
+2026-07-14 09:31:46 | INFO     | __main__:main:145 | 영상 소스: sample.mp4
+2026-07-14 09:31:46 | INFO     | __main__:main:146 | YOLO 모델: yolo11n.pt
+2026-07-14 09:31:46 | INFO     | __main__:main:147 | 카메라 ID: cam-001
+2026-07-14 09:31:46 | INFO     | __main__:main:148 | 디스플레이: ON
+2026-07-14 09:31:46 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-14 09:31:46 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-14 09:31:46 | INFO     | core.detector:__init__:56 | YOLO 모델 로딩: yolo11n.pt (디바이스: cpu)
+2026-07-14 09:31:47 | INFO     | core.detector:__init__:59 | PersonDetector 초기화 완료 (confidence=0.3, iou=0.45, img_size=640)
+2026-07-14 09:31:47 | INFO     | core.tracker:__init__:51 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-14 09:31:47 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-14 09:31:47 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-14 09:31:47 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-14 09:31:47 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-14 09:31:47 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-14 09:31:47 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-14 09:31:47 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-14 09:31:47 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-14 09:31:47 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-14 09:31:47 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-14 09:31:49 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (721, 280) | 현재 총 1개
+2026-07-14 09:31:50 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (725, 326) | 현재 총 2개
+2026-07-14 09:31:50 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (808, 325) | 현재 총 3개
+2026-07-14 09:31:51 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (804, 283) | 현재 총 4개
+2026-07-14 09:31:51 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (737, 285) | 현재 총 5개
+2026-07-14 09:31:51 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-14 09:31:52 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-14 09:31:52 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: Danger-Zone-1 (drawn-zone-1)
+2026-07-14 09:31:52 | INFO     | processing.intrusion_detector:__init__:178 | IntrusionDetector 초기화 완료 (하이브리드) (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.4)
+2026-07-14 09:31:52 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-14 09:31:52 | INFO     | communication.event_sender:start:207 | 이벤트 전송기 시작됨
+2026-07-14 09:31:52 | INFO     | core.mediapipe_detector:__init__:40 | MediaPipe Detector (solutions.pose/hands) 초기화 완료 (하이브리드)
+2026-07-14 09:31:52 | INFO     | processing.frame_processor:__init__:62 | FrameProcessor 초기화 완료 (MediaPipe 하이브리드 연동)
+2026-07-14 09:31:52 | INFO     | __main__:main:266 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-14 09:31:52 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:31:52 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:31:53 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#1 비상정지 감지!
+2026-07-14 09:31:53 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker1_global_20260714_093153.jpg
+2026-07-14 09:31:53 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#1 → 전체 영역 (fall_down)
+2026-07-14 09:31:55 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:31:55 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:31:58 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:31:58 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:00 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 09:32:00 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_093200.jpg
+2026-07-14 09:32:00 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:32:01 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 09:32:01 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_093201.jpg
+2026-07-14 09:32:01 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:32:01 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:32:01 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:02 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 09:32:02 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:32:04 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:32:04 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:04 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#4 상태 정상화
+2026-07-14 09:32:04 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:32:06 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 09:32:06 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_093206.jpg
+2026-07-14 09:32:06 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:32:07 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:32:07 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:10 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:32:10 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:11 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:32:12 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#2 비상정지 감지!
+2026-07-14 09:32:12 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker2_global_20260714_093212.jpg
+2026-07-14 09:32:12 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (fall_down)
+2026-07-14 09:32:13 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:32:13 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:14 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:32:14 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_093214.jpg
+2026-07-14 09:32:14 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:32:16 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:32:16 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:32:16 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:32:16 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:19 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:32:19 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:19 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:32:19 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_093219.jpg
+2026-07-14 09:32:19 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:32:20 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 09:32:20 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_093220.jpg
+2026-07-14 09:32:20 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:32:21 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (100프레임) | YOLO감지: 70.1ms | 추적: 1.1ms | MediaPipe: 188.7ms | 위협연산: 0.2ms | 렌더: 6.6ms | 평균: 266.7ms (3.7 FPS)
+2026-07-14 09:32:21 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:32:21 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:32:22 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:32:22 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:24 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#7 상태 정상화
+2026-07-14 09:32:24 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:32:25 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:32:25 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:25 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 09:32:25 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_093225.jpg
+2026-07-14 09:32:26 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:32:28 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:32:28 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:32:31 | INFO     | __main__:signal_handler:258 | 종료 신호 수신 - 안전하게 종료 중...
+2026-07-14 09:32:31 | INFO     | __main__:main:314 | 시스템 종료 중...
+2026-07-14 09:32:31 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-14 09:32:31 | INFO     | communication.event_sender:stop:338 | 이벤트 전송기 중지됨 (전송: 0, 실패: 14)
+2026-07-14 09:32:31 | INFO     | __main__:main:325 | 📊 최종 성능 통계 | 총 128프레임 | 감지: 71.3ms | 추적: 1.1ms | 침입: 0.2ms | 렌더: 6.8ms
+2026-07-14 09:32:31 | INFO     | __main__:main:335 | 📤 이벤트 통계 | 전송: 0 | 실패: 14 | WS: 0 | REST: 0
+2026-07-14 09:32:31 | INFO     | __main__:main:343 | ✅ 시스템 종료 완료
+2026-07-14 09:32:31 | INFO     | core.mediapipe_detector:close:137 | MediaPipe Detector 리소스 정리 완료
+2026-07-14 09:34:26 | INFO     | __main__:main:142 | ============================================================
+2026-07-14 09:34:26 | INFO     | __main__:main:143 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-14 09:34:26 | INFO     | __main__:main:144 | ============================================================
+2026-07-14 09:34:26 | INFO     | __main__:main:145 | 영상 소스: sample.mp4
+2026-07-14 09:34:26 | INFO     | __main__:main:146 | YOLO 모델: yolo11n.pt
+2026-07-14 09:34:26 | INFO     | __main__:main:147 | 카메라 ID: cam-001
+2026-07-14 09:34:26 | INFO     | __main__:main:148 | 디스플레이: ON
+2026-07-14 09:34:26 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-14 09:34:26 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-14 09:34:26 | INFO     | core.detector:__init__:56 | YOLO 모델 로딩: yolo11n.pt (디바이스: cpu)
+2026-07-14 09:34:26 | INFO     | core.detector:__init__:59 | PersonDetector 초기화 완료 (confidence=0.3, iou=0.45, img_size=640)
+2026-07-14 09:34:26 | INFO     | core.tracker:__init__:51 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-14 09:34:26 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-14 09:34:26 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-14 09:34:26 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-14 09:34:26 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-14 09:34:26 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-14 09:34:26 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-14 09:34:26 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-14 09:34:26 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-14 09:34:26 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-14 09:34:26 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-14 09:34:30 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (739, 298) | 현재 총 1개
+2026-07-14 09:34:31 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (744, 318) | 현재 총 2개
+2026-07-14 09:34:31 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (821, 325) | 현재 총 3개
+2026-07-14 09:34:31 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (828, 293) | 현재 총 4개
+2026-07-14 09:34:32 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (763, 297) | 현재 총 5개
+2026-07-14 09:34:32 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (744, 297) | 현재 총 6개
+2026-07-14 09:34:33 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-14 09:34:33 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-14 09:34:33 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: Danger-Zone-1 (drawn-zone-1)
+2026-07-14 09:34:33 | INFO     | processing.intrusion_detector:__init__:178 | IntrusionDetector 초기화 완료 (하이브리드) (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.4)
+2026-07-14 09:34:33 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-14 09:34:33 | INFO     | communication.event_sender:start:207 | 이벤트 전송기 시작됨
+2026-07-14 09:34:33 | INFO     | core.mediapipe_detector:__init__:40 | MediaPipe Detector (solutions.pose/hands) 초기화 완료 (하이브리드)
+2026-07-14 09:34:33 | INFO     | processing.frame_processor:__init__:62 | FrameProcessor 초기화 완료 (MediaPipe 하이브리드 연동)
+2026-07-14 09:34:33 | INFO     | __main__:main:266 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-14 09:34:33 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:34:33 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:34:34 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#1 비상정지 감지!
+2026-07-14 09:34:34 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker1_global_20260714_093434.jpg
+2026-07-14 09:34:34 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#1 → 전체 영역 (fall_down)
+2026-07-14 09:34:36 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:34:36 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:34:39 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:34:39 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:34:42 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 09:34:42 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_093442.jpg
+2026-07-14 09:34:42 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:34:42 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:34:42 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:34:42 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 09:34:42 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_093442.jpg
+2026-07-14 09:34:43 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:34:44 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 09:34:44 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:34:45 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:34:45 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:34:46 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#4 상태 정상화
+2026-07-14 09:34:46 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:34:48 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 09:34:48 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_093448.jpg
+2026-07-14 09:34:48 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:34:48 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:34:48 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:34:51 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:34:51 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:34:53 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:34:54 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#2 비상정지 감지!
+2026-07-14 09:34:54 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker2_global_20260714_093454.jpg
+2026-07-14 09:34:54 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (fall_down)
+2026-07-14 09:34:54 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:34:54 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:34:56 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:34:56 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_093456.jpg
+2026-07-14 09:34:56 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:34:57 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:34:57 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:34:58 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:34:58 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:35:00 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:35:00 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:35:02 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:35:02 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_093502.jpg
+2026-07-14 09:35:02 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:35:03 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 09:35:03 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_093503.jpg
+2026-07-14 09:35:03 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:35:03 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:35:03 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:35:04 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (100프레임) | YOLO감지: 77.1ms | 추적: 1.1ms | MediaPipe: 196.8ms | 위협연산: 0.2ms | 렌더: 6.9ms | 평균: 282.2ms (3.5 FPS)
+2026-07-14 09:35:04 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:35:04 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:35:06 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:35:06 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:35:07 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#7 상태 정상화
+2026-07-14 09:35:07 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:35:08 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 09:35:08 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_093508.jpg
+2026-07-14 09:35:09 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:35:09 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:35:09 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:35:12 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:35:12 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:35:14 | INFO     | __main__:main:289 | 'q' 키 입력 - 종료
+2026-07-14 09:35:14 | INFO     | __main__:main:314 | 시스템 종료 중...
+2026-07-14 09:35:14 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-14 09:35:14 | INFO     | communication.event_sender:stop:338 | 이벤트 전송기 중지됨 (전송: 0, 실패: 14)
+2026-07-14 09:35:14 | INFO     | __main__:main:325 | 📊 최종 성능 통계 | 총 127프레임 | 감지: 77.2ms | 추적: 1.1ms | 침입: 0.2ms | 렌더: 6.9ms
+2026-07-14 09:35:14 | INFO     | __main__:main:335 | 📤 이벤트 통계 | 전송: 0 | 실패: 14 | WS: 0 | REST: 0
+2026-07-14 09:35:14 | INFO     | __main__:main:343 | ✅ 시스템 종료 완료
+2026-07-14 09:35:14 | INFO     | core.mediapipe_detector:close:137 | MediaPipe Detector 리소스 정리 완료
+2026-07-14 09:47:57 | INFO     | __main__:main:142 | ============================================================
+2026-07-14 09:47:57 | INFO     | __main__:main:143 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-14 09:47:57 | INFO     | __main__:main:144 | ============================================================
+2026-07-14 09:47:57 | INFO     | __main__:main:145 | 영상 소스: sample.mp4
+2026-07-14 09:47:57 | INFO     | __main__:main:146 | YOLO 모델: yolo11n.pt
+2026-07-14 09:47:57 | INFO     | __main__:main:147 | 카메라 ID: cam-001
+2026-07-14 09:47:57 | INFO     | __main__:main:148 | 디스플레이: ON
+2026-07-14 09:47:57 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-14 09:47:57 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-14 09:47:57 | INFO     | core.detector:__init__:56 | YOLO 모델 로딩: yolo11n.pt (디바이스: cpu)
+2026-07-14 09:47:57 | INFO     | core.detector:__init__:59 | PersonDetector 초기화 완료 (confidence=0.3, iou=0.45, img_size=640)
+2026-07-14 09:47:57 | INFO     | core.tracker:__init__:51 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-14 09:47:57 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-14 09:47:57 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-14 09:47:57 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-14 09:47:57 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-14 09:47:57 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-14 09:47:57 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-14 09:47:57 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-14 09:47:57 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-14 09:47:57 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-14 09:47:57 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-14 09:48:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (732, 295) | 현재 총 1개
+2026-07-14 09:48:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (731, 322) | 현재 총 2개
+2026-07-14 09:48:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (821, 322) | 현재 총 3개
+2026-07-14 09:48:01 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (840, 283) | 현재 총 4개
+2026-07-14 09:48:02 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (737, 287) | 현재 총 5개
+2026-07-14 09:48:02 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-14 09:48:02 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-14 09:48:02 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: Danger-Zone-1 (drawn-zone-1)
+2026-07-14 09:48:02 | INFO     | processing.intrusion_detector:__init__:178 | IntrusionDetector 초기화 완료 (하이브리드) (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.4)
+2026-07-14 09:48:02 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-14 09:48:02 | INFO     | communication.event_sender:start:207 | 이벤트 전송기 시작됨
+2026-07-14 09:48:03 | INFO     | core.mediapipe_detector:__init__:40 | MediaPipe Detector (solutions.pose/hands) 초기화 완료 (하이브리드)
+2026-07-14 09:48:03 | INFO     | processing.frame_processor:__init__:62 | FrameProcessor 초기화 완료 (MediaPipe 하이브리드 연동)
+2026-07-14 09:48:03 | INFO     | __main__:main:266 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-14 09:48:03 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:48:03 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:48:03 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#1 비상정지 감지!
+2026-07-14 09:48:03 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker1_global_20260714_094803.jpg
+2026-07-14 09:48:03 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#1 → 전체 영역 (fall_down)
+2026-07-14 09:48:06 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:48:06 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:48:06 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 09:48:06 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_094806.jpg
+2026-07-14 09:48:06 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:48:06 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 09:48:06 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_094806.jpg
+2026-07-14 09:48:06 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:48:07 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 09:48:07 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 09:48:08 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#4 상태 정상화
+2026-07-14 09:48:08 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:48:08 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 09:48:08 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_094808.jpg
+2026-07-14 09:48:08 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 09:48:09 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:48:09 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:48:10 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:48:10 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#2 비상정지 감지!
+2026-07-14 09:48:10 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker2_global_20260714_094810.jpg
+2026-07-14 09:48:11 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (fall_down)
+2026-07-14 09:48:11 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:48:11 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_094811.jpg
+2026-07-14 09:48:11 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:48:12 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:48:12 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:48:12 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:48:12 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:48:13 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 09:48:13 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_094813.jpg
+2026-07-14 09:48:13 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:48:13 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 09:48:13 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_094813.jpg
+2026-07-14 09:48:14 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:48:14 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (100프레임) | YOLO감지: 26.5ms | 추적: 0.5ms | MediaPipe: 68.2ms | 위협연산: 0.1ms | 렌더: 2.5ms | 평균: 97.7ms (10.2 FPS)
+2026-07-14 09:48:14 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 09:48:14 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 09:48:15 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:48:15 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:48:15 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#7 상태 정상화
+2026-07-14 09:48:15 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:48:16 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 09:48:16 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_094816.jpg
+2026-07-14 09:48:16 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 09:48:17 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 09:48:18 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:48:18 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:48:18 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#5 비상정지 감지!
+2026-07-14 09:48:18 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker5_global_20260714_094818.jpg
+2026-07-14 09:48:18 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (fall_down)
+2026-07-14 09:48:18 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#8 양팔 교차 감지
+2026-07-14 09:48:18 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker8_global_20260714_094818.jpg
+2026-07-14 09:48:18 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:48:19 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#8 양팔 교차 해제
+2026-07-14 09:48:19 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:48:21 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 09:48:21 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 09:48:21 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#8 양팔 교차 감지
+2026-07-14 09:48:21 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker8_global_20260714_094821.jpg
+2026-07-14 09:48:21 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:48:21 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#10 비상정지 감지!
+2026-07-14 09:48:21 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker10_global_20260714_094821.jpg
+2026-07-14 09:48:21 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#10 → 전체 영역 (fall_down)
+2026-07-14 09:48:21 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#8 양팔 교차 해제
+2026-07-14 09:48:21 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 09:48:22 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#10 상태 정상화
+2026-07-14 09:48:22 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#10 → 전체 영역 (fall_down)
+2026-07-14 09:48:23 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#10 비상정지 감지!
+2026-07-14 09:48:23 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker10_global_20260714_094823.jpg
+2026-07-14 09:48:23 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#10 → 전체 영역 (fall_down)
+2026-07-14 09:48:23 | INFO     | __main__:main:289 | 'q' 키 입력 - 종료
+2026-07-14 09:48:23 | INFO     | __main__:main:314 | 시스템 종료 중...
+2026-07-14 09:48:23 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-14 09:48:24 | INFO     | communication.event_sender:stop:338 | 이벤트 전송기 중지됨 (전송: 0, 실패: 22)
+2026-07-14 09:48:24 | INFO     | __main__:main:325 | 📊 최종 성능 통계 | 총 181프레임 | 감지: 25.9ms | 추적: 0.4ms | 침입: 0.1ms | 렌더: 2.5ms
+2026-07-14 09:48:24 | INFO     | __main__:main:335 | 📤 이벤트 통계 | 전송: 0 | 실패: 22 | WS: 0 | REST: 0
+2026-07-14 09:48:24 | INFO     | __main__:main:343 | ✅ 시스템 종료 완료
+2026-07-14 09:48:24 | INFO     | core.mediapipe_detector:close:137 | MediaPipe Detector 리소스 정리 완료
+2026-07-14 10:02:16 | INFO     | __main__:main:142 | ============================================================
+2026-07-14 10:02:16 | INFO     | __main__:main:143 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-14 10:02:16 | INFO     | __main__:main:144 | ============================================================
+2026-07-14 10:02:16 | INFO     | __main__:main:145 | 영상 소스: sample.mp4
+2026-07-14 10:02:16 | INFO     | __main__:main:146 | YOLO 모델: yolo11n.pt
+2026-07-14 10:02:16 | INFO     | __main__:main:147 | 카메라 ID: cam-001
+2026-07-14 10:02:16 | INFO     | __main__:main:148 | 디스플레이: ON
+2026-07-14 10:02:16 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-14 10:02:16 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-14 10:02:16 | INFO     | core.detector:__init__:56 | YOLO 모델 로딩: yolo11n.pt (디바이스: cpu)
+2026-07-14 10:02:16 | INFO     | core.detector:__init__:59 | PersonDetector 초기화 완료 (confidence=0.3, iou=0.45, img_size=640)
+2026-07-14 10:02:16 | INFO     | core.tracker:__init__:51 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-14 10:02:16 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-14 10:02:16 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-14 10:02:16 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-14 10:02:16 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-14 10:02:16 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-14 10:02:16 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-14 10:02:16 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-14 10:02:16 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-14 10:02:16 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-14 10:02:16 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-14 10:02:19 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (745, 291) | 현재 총 1개
+2026-07-14 10:02:19 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (741, 330) | 현재 총 2개
+2026-07-14 10:02:20 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (826, 335) | 현재 총 3개
+2026-07-14 10:02:20 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (832, 275) | 현재 총 4개
+2026-07-14 10:02:21 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (748, 294) | 현재 총 5개
+2026-07-14 10:02:21 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-14 10:02:21 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-14 10:02:21 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: Danger-Zone-1 (drawn-zone-1)
+2026-07-14 10:02:21 | INFO     | processing.intrusion_detector:__init__:178 | IntrusionDetector 초기화 완료 (하이브리드) (쿨다운: 10.0초, 방식: pose-hybrid, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-14 10:02:21 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-14 10:02:21 | INFO     | communication.event_sender:start:207 | 이벤트 전송기 시작됨
+2026-07-14 10:02:21 | INFO     | core.mediapipe_detector:__init__:40 | MediaPipe Detector (solutions.pose/hands) 초기화 완료 (하이브리드)
+2026-07-14 10:02:21 | INFO     | processing.frame_processor:__init__:62 | FrameProcessor 초기화 완료 (MediaPipe 하이브리드 연동)
+2026-07-14 10:02:21 | INFO     | __main__:main:275 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-14 10:02:21 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:21 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:22 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#1 → Danger-Zone-1 진입
+2026-07-14 10:02:22 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260714_100222.jpg
+2026-07-14 10:02:22 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#1 → Danger-Zone-1 (intrusion)
+2026-07-14 10:02:22 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#1 비상정지 감지!
+2026-07-14 10:02:22 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker1_global_20260714_100222.jpg
+2026-07-14 10:02:22 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#1 → 전체 영역 (fall_down)
+2026-07-14 10:02:23 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#3 → Danger-Zone-1 진입
+2026-07-14 10:02:23 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker3_drawn-zone-1_20260714_100223.jpg
+2026-07-14 10:02:23 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#3 → Danger-Zone-1 (intrusion)
+2026-07-14 10:02:23 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:3 | method=pose-hybrid | bbox=(767,262,936,505) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=C-edge((767, 505),(767, 262))x((741, 330),(826, 335)) | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:24 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:24 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:25 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(627,372,752,522) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:25 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 10:02:25 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_100225.jpg
+2026-07-14 10:02:25 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 10:02:25 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 10:02:25 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_100225.jpg
+2026-07-14 10:02:25 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 10:02:25 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 10:02:25 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 10:02:26 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:3 | method=pose-hybrid | bbox=(730,227,875,511) | zone=Danger-Zone-1 | has_pose=False | has_hand=True | is_inside=True | hit=C-zoneInBbox | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:26 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#4 상태 정상화
+2026-07-14 10:02:26 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 10:02:27 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#4 비상정지 감지!
+2026-07-14 10:02:27 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker4_global_20260714_100227.jpg
+2026-07-14 10:02:27 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → 전체 영역 (fall_down)
+2026-07-14 10:02:27 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(623,360,745,515) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:27 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:27 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:29 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:4 | method=pose-hybrid | bbox=(502,355,635,453) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:29 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 10:02:29 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#2 → Danger-Zone-1 진입
+2026-07-14 10:02:29 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_drawn-zone-1_20260714_100229.jpg
+2026-07-14 10:02:29 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → Danger-Zone-1 (intrusion)
+2026-07-14 10:02:29 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#2 비상정지 감지!
+2026-07-14 10:02:29 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker2_global_20260714_100229.jpg
+2026-07-14 10:02:29 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (fall_down)
+2026-07-14 10:02:30 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 10:02:30 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_100230.jpg
+2026-07-14 10:02:30 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 10:02:30 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#6 → Danger-Zone-1 진입
+2026-07-14 10:02:30 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:5 | method=pose-hybrid | bbox=(621,390,738,527) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:30 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker6_drawn-zone-1_20260714_100230.jpg
+2026-07-14 10:02:30 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#6 → Danger-Zone-1 (intrusion)
+2026-07-14 10:02:30 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:30 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:31 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 10:02:31 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 10:02:31 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:5 | method=pose-hybrid | bbox=(625,376,751,523) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:32 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#5 양팔 교차 감지
+2026-07-14 10:02:32 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker5_global_20260714_100232.jpg
+2026-07-14 10:02:32 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 10:02:32 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 10:02:32 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_100232.jpg
+2026-07-14 10:02:32 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 10:02:33 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (100프레임) | YOLO감지: 25.5ms | 추적: 0.4ms | MediaPipe: 67.9ms | 위협연산: 0.8ms | 렌더: 2.6ms | 평균: 97.2ms (10.3 FPS)
+2026-07-14 10:02:33 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#5 양팔 교차 해제
+2026-07-14 10:02:33 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (gesture_x)
+2026-07-14 10:02:33 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:6 | method=pose-hybrid | bbox=(767,227,879,511) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=A-kp#1 | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:33 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:33 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:34 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#7 상태 정상화
+2026-07-14 10:02:34 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 10:02:34 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:7 | method=pose-hybrid | bbox=(502,354,634,453) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:34 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 10:02:34 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_100234.jpg
+2026-07-14 10:02:34 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 10:02:36 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:7 | method=pose-hybrid | bbox=(502,354,634,453) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:36 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 10:02:36 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:36 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:37 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#5 → Danger-Zone-1 진입
+2026-07-14 10:02:37 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker5_drawn-zone-1_20260714_100237.jpg
+2026-07-14 10:02:37 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → Danger-Zone-1 (intrusion)
+2026-07-14 10:02:37 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#5 비상정지 감지!
+2026-07-14 10:02:37 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker5_global_20260714_100237.jpg
+2026-07-14 10:02:37 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (fall_down)
+2026-07-14 10:02:37 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:8 | method=pose-hybrid | bbox=(623,383,736,524) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:37 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#8 양팔 교차 감지
+2026-07-14 10:02:37 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker8_global_20260714_100237.jpg
+2026-07-14 10:02:37 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 10:02:37 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#9 → Danger-Zone-1 진입
+2026-07-14 10:02:37 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker9_drawn-zone-1_20260714_100237.jpg
+2026-07-14 10:02:37 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#9 → Danger-Zone-1 (intrusion)
+2026-07-14 10:02:38 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#8 양팔 교차 해제
+2026-07-14 10:02:38 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 10:02:38 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:10 | method=pose-hybrid | bbox=(509,334,685,432) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:39 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:39 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:40 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#8 양팔 교차 감지
+2026-07-14 10:02:40 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker8_global_20260714_100240.jpg
+2026-07-14 10:02:40 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 10:02:40 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#10 비상정지 감지!
+2026-07-14 10:02:40 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker10_global_20260714_100240.jpg
+2026-07-14 10:02:40 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#10 → 전체 영역 (fall_down)
+2026-07-14 10:02:40 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:10 | method=pose-hybrid | bbox=(501,342,638,423) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:40 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#8 양팔 교차 해제
+2026-07-14 10:02:40 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#8 → 전체 영역 (gesture_x)
+2026-07-14 10:02:41 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#10 상태 정상화
+2026-07-14 10:02:41 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#10 → 전체 영역 (fall_down)
+2026-07-14 10:02:41 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:9 | method=pose-hybrid | bbox=(747,231,863,486) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=A-kp#11 | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:42 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#10 비상정지 감지!
+2026-07-14 10:02:42 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker10_global_20260714_100242.jpg
+2026-07-14 10:02:42 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#10 → 전체 영역 (fall_down)
+2026-07-14 10:02:42 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:42 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:43 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:9 | method=pose-hybrid | bbox=(736,236,843,494) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=A-kp#23 | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:44 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 10:02:44 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#8 → Danger-Zone-1 진입
+2026-07-14 10:02:44 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker8_drawn-zone-1_20260714_100244.jpg
+2026-07-14 10:02:44 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → Danger-Zone-1 (intrusion)
+2026-07-14 10:02:44 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#8 비상정지 감지!
+2026-07-14 10:02:44 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker8_global_20260714_100244.jpg
+2026-07-14 10:02:44 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → 전체 영역 (fall_down)
+2026-07-14 10:02:44 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:8 | method=pose-hybrid | bbox=(644,307,924,522) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=C-edge((644, 307),(924, 307))x((745, 291),(741, 330)) | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:44 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (200프레임) | YOLO감지: 25.0ms | 추적: 0.4ms | MediaPipe: 69.6ms | 위협연산: 0.8ms | 렌더: 2.6ms | 평균: 98.4ms (10.2 FPS)
+2026-07-14 10:02:45 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#11 양팔 교차 감지
+2026-07-14 10:02:45 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker11_global_20260714_100245.jpg
+2026-07-14 10:02:45 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#11 → 전체 영역 (gesture_x)
+2026-07-14 10:02:45 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#12 → Danger-Zone-1 진입
+2026-07-14 10:02:45 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker12_drawn-zone-1_20260714_100245.jpg
+2026-07-14 10:02:45 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#12 → Danger-Zone-1 (intrusion)
+2026-07-14 10:02:45 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#11 양팔 교차 해제
+2026-07-14 10:02:45 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:45 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:45 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#11 → 전체 영역 (gesture_x)
+2026-07-14 10:02:46 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:11 | method=pose-hybrid | bbox=(625,375,743,524) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:47 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#11 양팔 교차 감지
+2026-07-14 10:02:47 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker11_global_20260714_100247.jpg
+2026-07-14 10:02:47 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#11 → 전체 영역 (gesture_x)
+2026-07-14 10:02:47 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:11 | method=pose-hybrid | bbox=(626,371,751,522) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=A-kp#23 | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:47 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#13 비상정지 감지!
+2026-07-14 10:02:47 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker13_global_20260714_100247.jpg
+2026-07-14 10:02:47 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#13 → 전체 영역 (fall_down)
+2026-07-14 10:02:47 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#11 양팔 교차 해제
+2026-07-14 10:02:47 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#11 → 전체 영역 (gesture_x)
+2026-07-14 10:02:48 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:13 | method=pose-hybrid | bbox=(501,351,639,453) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:48 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#13 상태 정상화
+2026-07-14 10:02:48 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#13 → 전체 영역 (fall_down)
+2026-07-14 10:02:48 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:48 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:49 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#13 비상정지 감지!
+2026-07-14 10:02:49 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker13_global_20260714_100249.jpg
+2026-07-14 10:02:49 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#13 → 전체 영역 (fall_down)
+2026-07-14 10:02:50 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:11 | method=pose-hybrid | bbox=(623,361,741,515) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:51 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:13 | method=pose-hybrid | bbox=(502,355,629,452) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:51 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 10:02:51 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#11 → Danger-Zone-1 진입
+2026-07-14 10:02:51 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker11_drawn-zone-1_20260714_100251.jpg
+2026-07-14 10:02:51 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#11 → Danger-Zone-1 (intrusion)
+2026-07-14 10:02:51 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#11 비상정지 감지!
+2026-07-14 10:02:51 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker11_global_20260714_100251.jpg
+2026-07-14 10:02:51 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#11 → 전체 영역 (fall_down)
+2026-07-14 10:02:51 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:51 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:52 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#14 양팔 교차 감지
+2026-07-14 10:02:52 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker14_global_20260714_100252.jpg
+2026-07-14 10:02:52 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#14 → 전체 영역 (gesture_x)
+2026-07-14 10:02:52 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#15 → Danger-Zone-1 진입
+2026-07-14 10:02:52 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker15_drawn-zone-1_20260714_100252.jpg
+2026-07-14 10:02:52 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#15 → Danger-Zone-1 (intrusion)
+2026-07-14 10:02:52 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:15 | method=pose-hybrid | bbox=(765,265,939,493) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=C-edge((765, 493),(765, 265))x((741, 330),(826, 335)) | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:53 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#14 양팔 교차 해제
+2026-07-14 10:02:53 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#14 → 전체 영역 (gesture_x)
+2026-07-14 10:02:54 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:14 | method=pose-hybrid | bbox=(626,373,752,522) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:54 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#14 양팔 교차 감지
+2026-07-14 10:02:54 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker14_global_20260714_100254.jpg
+2026-07-14 10:02:54 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#14 → 전체 영역 (gesture_x)
+2026-07-14 10:02:54 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#16 비상정지 감지!
+2026-07-14 10:02:54 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker16_global_20260714_100254.jpg
+2026-07-14 10:02:54 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#16 → 전체 영역 (fall_down)
+2026-07-14 10:02:54 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 10:02:54 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 10:02:55 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#14 양팔 교차 해제
+2026-07-14 10:02:55 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#14 → 전체 영역 (gesture_x)
+2026-07-14 10:02:55 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:14 | method=pose-hybrid | bbox=(624,365,739,520) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:56 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#16 상태 정상화
+2026-07-14 10:02:56 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (300프레임) | YOLO감지: 24.8ms | 추적: 0.4ms | MediaPipe: 70.2ms | 위협연산: 0.8ms | 렌더: 2.6ms | 평균: 98.7ms (10.1 FPS)
+2026-07-14 10:02:56 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#16 → 전체 영역 (fall_down)
+2026-07-14 10:02:56 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#16 비상정지 감지!
+2026-07-14 10:02:56 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker16_global_20260714_100256.jpg
+2026-07-14 10:02:56 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#16 → 전체 영역 (fall_down)
+2026-07-14 10:02:56 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:16 | method=pose-hybrid | bbox=(502,354,632,448) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[745.0, 291.0], [741.0, 330.0], [826.0, 335.0]]...
+2026-07-14 10:02:57 | INFO     | __main__:main:298 | 'q' 키 입력 - 종료
+2026-07-14 10:02:57 | INFO     | __main__:main:323 | 시스템 종료 중...
+2026-07-14 10:02:57 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-14 10:02:57 | INFO     | communication.event_sender:stop:338 | 이벤트 전송기 중지됨 (전송: 0, 실패: 48)
+2026-07-14 10:02:57 | INFO     | __main__:main:334 | 📊 최종 성능 통계 | 총 308프레임 | 감지: 24.8ms | 추적: 0.4ms | 침입: 0.8ms | 렌더: 2.6ms
+2026-07-14 10:02:57 | INFO     | __main__:main:344 | 📤 이벤트 통계 | 전송: 0 | 실패: 48 | WS: 0 | REST: 0
+2026-07-14 10:02:57 | INFO     | __main__:main:352 | ✅ 시스템 종료 완료
+2026-07-14 10:02:57 | INFO     | core.mediapipe_detector:close:137 | MediaPipe Detector 리소스 정리 완료
+2026-07-14 17:28:01 | INFO     | __main__:main:142 | ============================================================
+2026-07-14 17:28:01 | INFO     | __main__:main:143 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-14 17:28:01 | INFO     | __main__:main:144 | ============================================================
+2026-07-14 17:28:01 | INFO     | __main__:main:145 | 영상 소스: sample.mp4
+2026-07-14 17:28:01 | INFO     | __main__:main:146 | YOLO 모델: yolo26s.pt
+2026-07-14 17:28:01 | INFO     | __main__:main:147 | 카메라 ID: cam-001
+2026-07-14 17:28:01 | INFO     | __main__:main:148 | 디스플레이: ON
+2026-07-14 17:28:01 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-14 17:28:01 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-14 17:28:01 | INFO     | core.detector:__init__:56 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-14 17:28:01 | INFO     | core.detector:__init__:59 | PersonDetector 초기화 완료 (confidence=0.3, iou=0.45, img_size=640)
+2026-07-14 17:28:01 | INFO     | core.tracker:__init__:51 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-14 17:28:01 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-14 17:28:01 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-14 17:28:01 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-14 17:28:01 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-14 17:28:01 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-14 17:28:01 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-14 17:28:01 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-14 17:28:01 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-14 17:28:01 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-14 17:28:01 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-14 17:28:03 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (736, 307) | 현재 총 1개
+2026-07-14 17:28:04 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (738, 329) | 현재 총 2개
+2026-07-14 17:28:04 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (816, 326) | 현재 총 3개
+2026-07-14 17:28:04 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (820, 292) | 현재 총 4개
+2026-07-14 17:28:05 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (722, 296) | 현재 총 5개
+2026-07-14 17:28:05 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-14 17:28:06 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-14 17:28:06 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: Danger-Zone-1 (drawn-zone-1)
+2026-07-14 17:28:06 | INFO     | processing.intrusion_detector:__init__:178 | IntrusionDetector 초기화 완료 (하이브리드) (쿨다운: 10.0초, 방식: pose-hybrid, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-14 17:28:06 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-14 17:28:06 | INFO     | communication.event_sender:start:207 | 이벤트 전송기 시작됨
+2026-07-14 17:28:06 | INFO     | core.mediapipe_detector:__init__:40 | MediaPipe Detector (solutions.pose/hands) 초기화 완료 (하이브리드)
+2026-07-14 17:28:06 | INFO     | processing.frame_processor:__init__:62 | FrameProcessor 초기화 완료 (MediaPipe 하이브리드 연동)
+2026-07-14 17:28:06 | INFO     | __main__:main:275 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-14 17:28:06 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:06 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:06 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#1 → Danger-Zone-1 진입
+2026-07-14 17:28:06 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260714_172806.jpg
+2026-07-14 17:28:06 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#1 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:08 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:1 | method=pose-hybrid | bbox=(744,274,936,523) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=C-edge((744, 523),(744, 274))x((738, 329),(816, 326)) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:08 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#4 → Danger-Zone-1 진입
+2026-07-14 17:28:08 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#3 비상정지 감지!
+2026-07-14 17:28:08 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker4_drawn-zone-1_20260714_172808.jpg
+2026-07-14 17:28:08 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker3_global_20260714_172808.jpg
+2026-07-14 17:28:08 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#4 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:08 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#3 → 전체 영역 (fall_down)
+2026-07-14 17:28:09 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:09 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:09 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:4 | method=pose-hybrid | bbox=(769,244,903,522) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=B-skel(11,23) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:10 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 17:28:10 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_172810.jpg
+2026-07-14 17:28:10 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:10 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#3 상태 정상화
+2026-07-14 17:28:10 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#3 → 전체 영역 (fall_down)
+2026-07-14 17:28:11 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(627,372,752,521) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:12 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:12 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:12 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 17:28:12 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(626,366,748,519) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:12 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:14 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(625,357,740,514) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:14 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#3 비상정지 감지!
+2026-07-14 17:28:14 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker3_global_20260714_172814.jpg
+2026-07-14 17:28:14 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#3 → 전체 영역 (fall_down)
+2026-07-14 17:28:15 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:15 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:15 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 17:28:15 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_172815.jpg
+2026-07-14 17:28:15 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:15 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#3 상태 정상화
+2026-07-14 17:28:15 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#3 → 전체 영역 (fall_down)
+2026-07-14 17:28:15 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(617,313,729,533) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:16 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 17:28:16 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#2 → Danger-Zone-1 진입
+2026-07-14 17:28:16 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_drawn-zone-1_20260714_172816.jpg
+2026-07-14 17:28:16 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:16 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 17:28:16 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:16 | INFO     | processing.intrusion_detector:check_intrusions:461 | ✅ [침입 이탈] 작업자#2 ← Danger-Zone-1 이탈 (체류: 0.7초)
+2026-07-14 17:28:17 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:17 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:4 | method=pose-hybrid | bbox=(744,274,936,523) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=C-edge((744, 523),(744, 274))x((738, 329),(816, 326)) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:18 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#5 비상정지 감지!
+2026-07-14 17:28:18 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker5_global_20260714_172818.jpg
+2026-07-14 17:28:18 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:18 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:18 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (fall_down)
+2026-07-14 17:28:18 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#6 → Danger-Zone-1 진입
+2026-07-14 17:28:18 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker6_drawn-zone-1_20260714_172818.jpg
+2026-07-14 17:28:18 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#6 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:18 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 17:28:18 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_172818.jpg
+2026-07-14 17:28:18 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:19 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(625,377,746,523) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:20 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#5 상태 정상화
+2026-07-14 17:28:20 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (fall_down)
+2026-07-14 17:28:20 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:6 | method=pose-hybrid | bbox=(769,231,888,526) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=A-kp#12 | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:21 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:21 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:21 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (100프레임) | YOLO감지: 50.6ms | 추적: 0.5ms | MediaPipe: 83.3ms | 위협연산: 1.0ms | 렌더: 2.6ms | 평균: 138.0ms (7.2 FPS)
+2026-07-14 17:28:22 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:6 | method=pose-hybrid | bbox=(737,228,871,503) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=C-edge((737, 503),(737, 228))x((736, 307),(738, 329)) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:22 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 17:28:22 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:24 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:24 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:24 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:6 | method=pose-hybrid | bbox=(748,233,849,490) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=C-edge((748, 490),(748, 233))x((738, 329),(816, 326)) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:24 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#5 비상정지 감지!
+2026-07-14 17:28:24 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker5_global_20260714_172824.jpg
+2026-07-14 17:28:24 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#5 → 전체 영역 (fall_down)
+2026-07-14 17:28:24 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 17:28:24 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_172824.jpg
+2026-07-14 17:28:25 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:25 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#5 상태 정상화
+2026-07-14 17:28:25 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#5 → 전체 영역 (fall_down)
+2026-07-14 17:28:25 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:6 | method=pose-hybrid | bbox=(725,240,837,498) | zone=Danger-Zone-1 | has_pose=False | has_hand=True | is_inside=True | hit=C-edge((725, 498),(725, 240))x((820, 292),(722, 296)) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:25 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 17:28:26 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#2 → Danger-Zone-1 진입
+2026-07-14 17:28:26 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_drawn-zone-1_20260714_172826.jpg
+2026-07-14 17:28:26 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:26 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 17:28:26 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:26 | INFO     | processing.intrusion_detector:check_intrusions:461 | ✅ [침입 이탈] 작업자#2 ← Danger-Zone-1 이탈 (체류: 0.7초)
+2026-07-14 17:28:26 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:27 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:27 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:27 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:7 | method=pose-hybrid | bbox=(548,342,669,444) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:27 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 17:28:27 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_172827.jpg
+2026-07-14 17:28:27 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 17:28:28 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#8 → Danger-Zone-1 진입
+2026-07-14 17:28:28 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker8_drawn-zone-1_20260714_172828.jpg
+2026-07-14 17:28:28 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#8 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:28 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 17:28:28 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_172828.jpg
+2026-07-14 17:28:28 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:28 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:7 | method=pose-hybrid | bbox=(510,339,696,439) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:30 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:30 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:30 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#7 상태 정상화
+2026-07-14 17:28:30 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 17:28:30 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:7 | method=pose-hybrid | bbox=(500,341,647,433) | zone=Danger-Zone-1 | has_pose=False | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:32 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:7 | method=pose-hybrid | bbox=(497,349,637,452) | zone=Danger-Zone-1 | has_pose=False | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:32 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 17:28:32 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:33 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:33 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:33 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:7 | method=pose-hybrid | bbox=(500,356,632,454) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:34 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#7 비상정지 감지!
+2026-07-14 17:28:34 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker7_global_20260714_172834.jpg
+2026-07-14 17:28:34 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 17:28:34 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 17:28:34 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_172834.jpg
+2026-07-14 17:28:34 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:35 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#7 상태 정상화
+2026-07-14 17:28:35 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#7 → 전체 영역 (fall_down)
+2026-07-14 17:28:35 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:7 | method=pose-hybrid | bbox=(501,357,629,455) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:35 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 17:28:36 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#2 → Danger-Zone-1 진입
+2026-07-14 17:28:36 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_drawn-zone-1_20260714_172836.jpg
+2026-07-14 17:28:36 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:36 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:36 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:36 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 17:28:36 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:36 | INFO     | processing.intrusion_detector:check_intrusions:461 | ✅ [침입 이탈] 작업자#2 ← Danger-Zone-1 이탈 (체류: 0.7초)
+2026-07-14 17:28:36 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (200프레임) | YOLO감지: 50.0ms | 추적: 0.4ms | MediaPipe: 83.5ms | 위협연산: 0.9ms | 렌더: 2.6ms | 평균: 137.6ms (7.3 FPS)
+2026-07-14 17:28:36 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:37 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(623,381,744,527) | zone=Danger-Zone-1 | has_pose=False | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:37 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#9 비상정지 감지!
+2026-07-14 17:28:37 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker9_global_20260714_172837.jpg
+2026-07-14 17:28:37 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#9 → 전체 영역 (fall_down)
+2026-07-14 17:28:38 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#10 → Danger-Zone-1 진입
+2026-07-14 17:28:38 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker10_drawn-zone-1_20260714_172838.jpg
+2026-07-14 17:28:38 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#10 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:38 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 17:28:38 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_172838.jpg
+2026-07-14 17:28:38 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:38 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:10 | method=pose-hybrid | bbox=(769,247,879,522) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=C-edge((769, 522),(769, 247))x((738, 329),(816, 326)) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:39 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:39 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:40 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#9 상태 정상화
+2026-07-14 17:28:40 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#9 → 전체 영역 (fall_down)
+2026-07-14 17:28:40 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(627,373,752,522) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:42 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:42 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:42 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(626,366,744,519) | zone=Danger-Zone-1 | has_pose=False | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:42 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 17:28:42 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:44 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(625,358,739,514) | zone=Danger-Zone-1 | has_pose=False | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:44 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#9 비상정지 감지!
+2026-07-14 17:28:44 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker9_global_20260714_172844.jpg
+2026-07-14 17:28:44 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#9 → 전체 영역 (fall_down)
+2026-07-14 17:28:45 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 17:28:45 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:45 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:45 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_172845.jpg
+2026-07-14 17:28:45 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:45 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#9 상태 정상화
+2026-07-14 17:28:45 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#9 → 전체 영역 (fall_down)
+2026-07-14 17:28:45 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(618,316,730,533) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=A-kp#11 | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:46 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 17:28:46 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#2 → Danger-Zone-1 진입
+2026-07-14 17:28:46 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_drawn-zone-1_20260714_172846.jpg
+2026-07-14 17:28:46 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:46 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 17:28:46 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:46 | INFO     | processing.intrusion_detector:check_intrusions:461 | ✅ [침입 이탈] 작업자#2 ← Danger-Zone-1 이탈 (체류: 0.7초)
+2026-07-14 17:28:46 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:47 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:10 | method=pose-hybrid | bbox=(746,279,937,522) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=A-kp#12 | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:48 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#11 비상정지 감지!
+2026-07-14 17:28:48 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker11_global_20260714_172848.jpg
+2026-07-14 17:28:48 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:48 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:48 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: staying 작업자#10 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:48 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#11 → 전체 영역 (fall_down)
+2026-07-14 17:28:48 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#12 → Danger-Zone-1 진입
+2026-07-14 17:28:48 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker12_drawn-zone-1_20260714_172848.jpg
+2026-07-14 17:28:48 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#12 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:48 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 17:28:48 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_172848.jpg
+2026-07-14 17:28:48 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:49 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:2 | method=pose-hybrid | bbox=(624,378,745,524) | zone=Danger-Zone-1 | has_pose=False | has_hand=True | is_inside=False | hit=NONE | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:50 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#11 상태 정상화
+2026-07-14 17:28:50 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#11 → 전체 영역 (fall_down)
+2026-07-14 17:28:51 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:12 | method=pose-hybrid | bbox=(768,232,889,525) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=C-edge((768, 525),(768, 232))x((738, 329),(816, 326)) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:51 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:51 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:52 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:12 | method=pose-hybrid | bbox=(738,228,873,507) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=C-edge((738, 507),(738, 228))x((736, 307),(738, 329)) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:53 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 17:28:53 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:53 | INFO     | processing.frame_processor:_log_performance:157 | 📊 성능 통계 (300프레임) | YOLO감지: 50.4ms | 추적: 0.4ms | MediaPipe: 87.3ms | 위협연산: 1.0ms | 렌더: 2.7ms | 평균: 141.8ms (7.1 FPS)
+2026-07-14 17:28:54 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:54 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:54 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:12 | method=pose-hybrid | bbox=(748,233,850,489) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=B-skel(11,23) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:55 | ERROR    | processing.intrusion_detector:check_intrusions:278 | 🚨 [비상정지!!] 작업자#11 비상정지 감지!
+2026-07-14 17:28:55 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/fall_down_cam-001_worker11_global_20260714_172855.jpg
+2026-07-14 17:28:55 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#11 → 전체 영역 (fall_down)
+2026-07-14 17:28:56 | WARNING  | processing.intrusion_detector:check_intrusions:224 | ⚠️ [제스처 X 감지] 작업자#2 양팔 교차 감지
+2026-07-14 17:28:56 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/gesture_x_cam-001_worker2_global_20260714_172856.jpg
+2026-07-14 17:28:56 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:56 | INFO     | processing.intrusion_detector:check_intrusions:292 | ✅ [비상정지 해제] 작업자#11 상태 정상화
+2026-07-14 17:28:56 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#11 → 전체 영역 (fall_down)
+2026-07-14 17:28:56 | DEBUG    | processing.intrusion_detector:check_intrusions:425 | 🔍 [DEBUG] ID:12 | method=pose-hybrid | bbox=(728,241,837,499) | zone=Danger-Zone-1 | has_pose=True | has_hand=True | is_inside=True | hit=B-skel(11,23) | poly=[[736.0, 307.0], [738.0, 329.0], [816.0, 326.0]]...
+2026-07-14 17:28:57 | DEBUG    | communication.event_sender:_maintain_connection:266 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-14 17:28:57 | WARNING  | communication.event_sender:_maintain_connection:279 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-14 17:28:57 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-14 17:28:57 | WARNING  | processing.intrusion_detector:check_intrusions:445 | ⚠️ [침입 감지] 작업자#2 → Danger-Zone-1 진입
+2026-07-14 17:28:57 | INFO     | communication.event_sender:_save_snapshot:193 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_drawn-zone-1_20260714_172857.jpg
+2026-07-14 17:28:57 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: entered 작업자#2 → Danger-Zone-1 (intrusion)
+2026-07-14 17:28:57 | INFO     | processing.intrusion_detector:check_intrusions:238 | ✅ [제스처 X 해제] 작업자#2 양팔 교차 해제
+2026-07-14 17:28:58 | INFO     | communication.event_sender:_main_async_loop:240 | [LOCAL] 이벤트: exited 작업자#2 → 전체 영역 (gesture_x)
+2026-07-14 17:28:58 | INFO     | processing.intrusion_detector:check_intrusions:461 | ✅ [침입 이탈] 작업자#2 ← Danger-Zone-1 이탈 (체류: 0.8초)
+2026-07-14 17:28:58 | INFO     | __main__:main:298 | 'q' 키 입력 - 종료
+2026-07-14 17:28:58 | INFO     | __main__:main:323 | 시스템 종료 중...
+2026-07-14 17:28:58 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-14 17:28:58 | INFO     | communication.event_sender:stop:338 | 이벤트 전송기 중지됨 (전송: 0, 실패: 56)
+2026-07-14 17:28:58 | INFO     | __main__:main:334 | 📊 최종 성능 통계 | 총 328프레임 | 감지: 51.0ms | 추적: 0.5ms | 침입: 0.9ms | 렌더: 2.8ms
+2026-07-14 17:28:58 | INFO     | __main__:main:344 | 📤 이벤트 통계 | 전송: 0 | 실패: 56 | WS: 0 | REST: 0
+2026-07-14 17:28:58 | INFO     | __main__:main:352 | ✅ 시스템 종료 완료
+2026-07-14 17:28:58 | INFO     | core.mediapipe_detector:close:137 | MediaPipe Detector 리소스 정리 완료

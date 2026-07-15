@@ -233,6 +233,97 @@ class RTSPVideoSource(VideoSource):
         return (0, 0)
 
 
+
+class WebcamVideoSource(VideoSource):
+    """로컬 USB 웹캠 및 내장 카메라 소스"""
+
+    def __init__(
+        self,
+        webcam_index: int,
+        resize: Optional[Tuple[int, int]] = None,
+        fps_limit: int = 30
+    ):
+        """
+        Args:
+            webcam_index: 웹캠 디바이스 인덱스 (예: 0, 1)
+            resize: 리사이즈 크기 (width, height), None이면 원본 크기
+            fps_limit: 최대 FPS 제한
+        """
+        self._webcam_index = webcam_index
+        self._resize = resize
+        self._fps_limit = fps_limit
+        self._cap: Optional[cv2.VideoCapture] = None
+        self._original_fps: float = 30.0
+        self._original_size: Tuple[int, int] = (0, 0)
+        self._last_frame_time: float = 0.0
+
+    def open(self) -> bool:
+        """웹캠 디바이스 오픈"""
+        self._cap = cv2.VideoCapture(self._webcam_index)
+        if not self._cap.isOpened():
+            logger.error(f"웹캠 디바이스를 열 수 없습니다: 인덱스 {self._webcam_index}")
+            return False
+
+        # 버퍼 지연 최소화를 위한 버퍼 크기 설정 (최신 프레임 획득 타겟)
+        self._cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+
+        # 웹캠 사양 조회
+        self._original_fps = self._cap.get(cv2.CAP_PROP_FPS) or 30.0
+        w = int(self._cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        h = int(self._cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        self._original_size = (w, h)
+
+        logger.info(
+            f"웹캠 소스 연결 성공: 디바이스 인덱스 {self._webcam_index} "
+            f"({w}x{h}, {self._original_fps:.1f}fps)"
+        )
+        return True
+
+    def read(self) -> Tuple[bool, Optional["cv2.Mat"]]:
+        """웹캠에서 프레임 읽기 (FPS 제한 적용)"""
+        if self._cap is None or not self._cap.isOpened():
+            return False, None
+
+        # 실시간 처리를 위한 FPS 제한 딜레이
+        min_interval = 1.0 / self._fps_limit
+        now = time.time()
+        elapsed = now - self._last_frame_time
+        if elapsed < min_interval:
+            time.sleep(min_interval - elapsed)
+
+        ret, frame = self._cap.read()
+        if not ret:
+            logger.warning(f"웹캠(인덱스 {self._webcam_index}) 프레임을 읽지 못했습니다.")
+            return False, None
+
+        self._last_frame_time = time.time()
+
+        # 리사이즈 적용
+        if self._resize is not None and frame is not None:
+            frame = cv2.resize(frame, self._resize)
+
+        return True, frame
+
+    def release(self) -> None:
+        """웹캠 소스 해제"""
+        if self._cap is not None:
+            self._cap.release()
+            logger.info(f"웹캠 소스 해제됨: 인덱스 {self._webcam_index}")
+
+    def is_opened(self) -> bool:
+        return self._cap is not None and self._cap.isOpened()
+
+    @property
+    def fps(self) -> float:
+        return self._original_fps
+
+    @property
+    def frame_size(self) -> Tuple[int, int]:
+        if self._resize is not None:
+            return self._resize
+        return self._original_size
+
+
 def create_video_source(
     source: str,
     resize: Optional[Tuple[int, int]] = None,
@@ -243,7 +334,7 @@ def create_video_source(
     소스 경로에 따라 적절한 VideoSource 인스턴스 생성
 
     Args:
-        source: 파일 경로 또는 RTSP URL
+        source: 파일 경로, RTSP URL 또는 웹캠 인덱스
         resize: 리사이즈 크기
         fps_limit: FPS 제한
         loop: 반복 재생 (파일만)
@@ -254,6 +345,11 @@ def create_video_source(
     if source.startswith("rtsp://") or source.startswith("rtsps://"):
         logger.info(f"RTSP 소스 생성: {source}")
         return RTSPVideoSource(source, resize, fps_limit)
+    elif source.isdigit():
+        webcam_idx = int(source)
+        logger.info(f"웹캠 소스 생성: 디바이스 인덱스 {webcam_idx}")
+        return WebcamVideoSource(webcam_idx, resize, fps_limit)
     else:
         logger.info(f"파일 소스 생성: {source}")
         return FileVideoSource(source, resize, fps_limit, loop)
+

@@ -6,7 +6,10 @@ supervision 라이브러리를 활용하여 프레임 간 동일 작업자를 �
 import numpy as np
 import supervision as sv
 from dataclasses import dataclass
+from typing import Optional
 from loguru import logger
+
+from utils.geometry import calculate_iou
 
 
 @dataclass
@@ -17,6 +20,10 @@ class TrackedObject:
     confidence: float
     class_id: int
     class_name: str
+    mask: Optional[np.ndarray] = None         # 세그멘테이션 마스크 (사람 형태 2D 마스크)
+    keypoints: Optional[np.ndarray] = None    # 포즈 키포인트 (17, 3) (x, y, conf)
+    hand_landmarks: Optional[list] = None     # MediaPipe Hands 랜드마크 정보 리스트
+
 
 
 class PersonTracker:
@@ -76,6 +83,11 @@ class PersonTracker:
         if tracked_detections.tracker_id is not None:
             names = yolo_result.names  # class_id → class_name 매핑
 
+            # 원본 감지 bbox 수집
+            original_boxes = []
+            if yolo_result is not None and yolo_result.boxes is not None:
+                original_boxes = yolo_result.boxes.xyxy.cpu().numpy()
+
             for i in range(len(tracked_detections)):
                 bbox = tracked_detections.xyxy[i]
                 confidence = float(tracked_detections.confidence[i]) if tracked_detections.confidence is not None else 0.0
@@ -83,13 +95,36 @@ class PersonTracker:
                 tracker_id = int(tracked_detections.tracker_id[i])
                 class_name = names.get(class_id, "unknown")
 
+                # IoU 매칭을 통해 원래 YOLO 검출 결과 j 매핑
+                best_j = -1
+                best_iou = -1.0
+                for j in range(len(original_boxes)):
+                    iou = calculate_iou(
+                        (float(bbox[0]), float(bbox[1]), float(bbox[2]), float(bbox[3])),
+                        (float(original_boxes[j][0]), float(original_boxes[j][1]), float(original_boxes[j][2]), float(original_boxes[j][3]))
+                    )
+                    if iou > best_iou:
+                        best_iou = iou
+                        best_j = j
+
+                mask = None
+                keypoints = None
+                if best_j != -1 and best_iou >= 0.5:
+                    if hasattr(yolo_result, "masks") and yolo_result.masks is not None:
+                        mask = yolo_result.masks.data[best_j].cpu().numpy()
+                    if hasattr(yolo_result, "keypoints") and yolo_result.keypoints is not None:
+                        keypoints = yolo_result.keypoints.data[best_j].cpu().numpy()
+
                 tracked_objects.append(TrackedObject(
                     tracker_id=tracker_id,
                     bbox=(float(bbox[0]), float(bbox[1]),
                           float(bbox[2]), float(bbox[3])),
                     confidence=confidence,
                     class_id=class_id,
-                    class_name=class_name
+                    class_name=class_name,
+                    mask=mask,
+                    keypoints=keypoints,
+                    hand_landmarks=None
                 ))
 
         return tracked_objects

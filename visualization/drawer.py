@@ -127,7 +127,7 @@ class ZoneDrawer:
         for i, zone in enumerate(self.completed_zones):
             zones_data.append({
                 "zone_id": f"drawn-zone-{i+1}",
-                "name": f"사용자 위험구역 {i+1}",
+                "name": f"Danger-Zone-{i+1}",
                 "points": zone,
                 "severity": "high",
                 "is_normalized": False

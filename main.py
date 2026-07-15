@@ -219,7 +219,16 @@ def main():
 
     # 5. 침입 감지기
     intrusion_detector = IntrusionDetector(
-        cooldown_seconds=settings.event.cooldown_seconds
+        cooldown_seconds=settings.event.cooldown_seconds,
+        method=settings.event.intrusion_method,
+        overlap_ratio=settings.event.overlap_ratio,
+        frame_width=frame_w,
+        frame_height=frame_h,
+        pose_conf_threshold=settings.event.pose_conf_threshold,
+        waving_amplitude_ratio=settings.event.waving_amplitude_ratio,
+        waving_direction_changes=settings.event.waving_direction_changes,
+        enter_threshold_frames=settings.event.enter_threshold_frames,
+        exit_threshold_frames=settings.event.exit_threshold_frames,
     )
 
     # 6. 시각화 렌더러

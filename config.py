@@ -19,6 +19,9 @@ class DetectorSettings(BaseSettings):
 
     class Config:
         env_prefix = "DETECTOR_"
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        extra = "ignore"
 
 
 class TrackerSettings(BaseSettings):
@@ -29,6 +32,9 @@ class TrackerSettings(BaseSettings):
 
     class Config:
         env_prefix = "TRACKER_"
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        extra = "ignore"
 
 
 class VideoSettings(BaseSettings):
@@ -41,6 +47,9 @@ class VideoSettings(BaseSettings):
 
     class Config:
         env_prefix = "VIDEO_"
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        extra = "ignore"
 
 
 class ZoneSettings(BaseSettings):
@@ -53,16 +62,31 @@ class ZoneSettings(BaseSettings):
 
     class Config:
         env_prefix = "ZONE_"
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        extra = "ignore"
 
 
 class EventSettings(BaseSettings):
-    """이벤트 전송 설정"""
+    """이벤트 전송 및 감도 튜닝 설정"""
     cooldown_seconds: float = Field(default=10.0, description="같은 이벤트 재전송 쿨다운 (초)")
     save_snapshots: bool = Field(default=True, description="침입 감지 시 스냅샷 저장")
     snapshot_dir: str = Field(default="snapshots", description="스냅샷 저장 경로")
+    
+    # 감도 튜닝용 변수 복원
+    intrusion_method: str = Field(default="pose-hybrid", description="침입 감지 방법 (point/multi-point/overlap/segment/pose-hybrid)")
+    overlap_ratio: float = Field(default=0.2, description="overlap 방식 사용 시 바운딩박스 하부 비율")
+    pose_conf_threshold: float = Field(default=0.5, description="포즈 키포인트 검출 신뢰도 임계치")
+    waving_amplitude_ratio: float = Field(default=0.15, description="손 흔들기 최소 진폭 비율 (어깨 너비 대비)")
+    waving_direction_changes: int = Field(default=2, description="손 흔들기 최소 방향 전환 횟수")
+    enter_threshold_frames: int = Field(default=3, description="위험 감지 판정에 필요한 최소 연속 프레임 수")
+    exit_threshold_frames: int = Field(default=5, description="위험 해제 판정에 필요한 최소 연속 프레임 수")
 
     class Config:
         env_prefix = "EVENT_"
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        extra = "ignore"
 
 
 class APISettings(BaseSettings):
@@ -75,6 +99,9 @@ class APISettings(BaseSettings):
 
     class Config:
         env_prefix = "API_"
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+        extra = "ignore"
 
 
 class AppSettings(BaseSettings):
@@ -94,6 +121,7 @@ class AppSettings(BaseSettings):
         env_prefix = "APP_"
         env_file = ".env"
         env_file_encoding = "utf-8"
+        extra = "ignore"
 
 
 # 전역 설정 인스턴스

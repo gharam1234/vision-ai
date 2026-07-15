@@ -1,0 +1,1046 @@
+2026-07-06 09:04:14 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 09:04:14 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 09:04:14 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 09:04:14 | INFO     | __main__:main:171 | 영상 소스: sample4.mp4
+2026-07-06 09:04:14 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 09:04:14 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 09:04:14 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 09:04:14 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample4.mp4
+2026-07-06 09:04:14 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample4.mp4 (640x360, 30.0fps, 201프레임)
+2026-07-06 09:04:14 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 09:04:14 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 09:04:14 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 09:04:14 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 09:04:15 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 09:04:15 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 09:04:15 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 09:04:15 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 09:04:15 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 09:04:15 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 09:04:15 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 09:04:15 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 09:04:15 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 09:04:18 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (551, 314) | 현재 총 1개
+2026-07-06 09:04:18 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (574, 388) | 현재 총 2개
+2026-07-06 09:04:18 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (601, 396) | 현재 총 3개
+2026-07-06 09:04:19 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (608, 312) | 현재 총 4개
+2026-07-06 09:04:19 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (562, 319) | 현재 총 5개
+2026-07-06 09:04:20 | WARNING  | visualization.drawer:draw_zones:121 | 감지를 시작하려면 최소 1개 이상의 위험구역을 완성 후 저장(Enter)해야 합니다.
+2026-07-06 09:04:22 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 09:04:22 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 09:04:22 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 09:04:22 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 09:04:22 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 09:04:22 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 09:04:22 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 09:04:22 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 09:04:25 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (629, 383), 위험등급: high)
+2026-07-06 09:04:25 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_090425.jpg
+2026-07-06 09:04:25 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#1 → 사용자 위험구역 1
+2026-07-06 09:04:31 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 09:04:31 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 09:04:31 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-06 09:04:32 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 1)
+2026-07-06 09:04:32 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 45프레임 | 감지: 158.8ms | 추적: 1.1ms | 침입: 0.6ms | 렌더: 5.3ms
+2026-07-06 09:04:32 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 1 | WS: 0 | REST: 0
+2026-07-06 09:04:32 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 09:08:15 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 09:08:15 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 09:08:15 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 09:08:15 | INFO     | __main__:main:171 | 영상 소스: sample4.mp4
+2026-07-06 09:08:15 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 09:08:15 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 09:08:15 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 09:08:15 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample4.mp4
+2026-07-06 09:08:15 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample4.mp4 (640x360, 30.0fps, 201프레임)
+2026-07-06 09:08:15 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 09:08:15 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 09:08:15 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 09:08:15 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 09:08:15 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 09:08:15 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 09:08:15 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 09:08:15 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 09:08:15 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 09:08:15 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 09:08:15 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 09:08:15 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 09:08:15 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 09:08:19 | INFO     | visualization.drawer:draw_zones:96 | 사용자에 의해 설정 프로그램이 종료되었습니다.
+2026-07-06 09:08:34 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 09:08:34 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 09:08:34 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 09:08:34 | INFO     | __main__:main:171 | 영상 소스: s1mple4.mp4
+2026-07-06 09:08:34 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 09:08:34 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 09:08:34 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 09:08:34 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: s1mple4.mp4
+2026-07-06 09:08:34 | ERROR    | processing.video_source:open:80 | 영상 파일을 열 수 없습니다: s1mple4.mp4
+2026-07-06 09:08:34 | ERROR    | __main__:main:190 | 영상 소스 열기 실패. 프로그램을 종료합니다.
+2026-07-06 09:09:02 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 09:09:02 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 09:09:02 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 09:09:02 | INFO     | __main__:main:171 | 영상 소스: sample1.mp4
+2026-07-06 09:09:02 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 09:09:02 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 09:09:02 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 09:09:02 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample1.mp4
+2026-07-06 09:09:02 | ERROR    | processing.video_source:open:80 | 영상 파일을 열 수 없습니다: sample1.mp4
+2026-07-06 09:09:02 | ERROR    | __main__:main:190 | 영상 소스 열기 실패. 프로그램을 종료합니다.
+2026-07-06 09:09:16 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 09:09:16 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 09:09:16 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 09:09:16 | INFO     | __main__:main:171 | 영상 소스: emple1.mp4
+2026-07-06 09:09:16 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 09:09:16 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 09:09:16 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 09:09:16 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: emple1.mp4
+2026-07-06 09:09:16 | ERROR    | processing.video_source:open:80 | 영상 파일을 열 수 없습니다: emple1.mp4
+2026-07-06 09:09:16 | ERROR    | __main__:main:190 | 영상 소스 열기 실패. 프로그램을 종료합니다.
+2026-07-06 09:09:26 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 09:09:26 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 09:09:26 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 09:09:26 | INFO     | __main__:main:171 | 영상 소스: mple1.mp4
+2026-07-06 09:09:26 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 09:09:26 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 09:09:26 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 09:09:26 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: mple1.mp4
+2026-07-06 09:09:26 | ERROR    | processing.video_source:open:80 | 영상 파일을 열 수 없습니다: mple1.mp4
+2026-07-06 09:09:26 | ERROR    | __main__:main:190 | 영상 소스 열기 실패. 프로그램을 종료합니다.
+2026-07-06 09:09:47 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 09:09:47 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 09:09:47 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 09:09:47 | INFO     | __main__:main:171 | 영상 소스: sample.mp4
+2026-07-06 09:09:47 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 09:09:47 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 09:09:47 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 09:09:47 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample.mp4
+2026-07-06 09:09:47 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-06 09:09:47 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 09:09:47 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 09:09:47 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 09:09:47 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 09:09:48 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 09:09:48 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 09:09:48 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 09:09:48 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 09:09:48 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 09:09:48 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 09:09:48 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 09:09:48 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 09:09:48 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 09:09:54 | WARNING  | visualization.drawer:draw_zones:113 | 위험구역은 최소 3개 이상의 꼭짓점이 필요합니다.
+2026-07-06 09:10:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (712, 518) | 현재 총 1개
+2026-07-06 09:10:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (757, 546) | 현재 총 2개
+2026-07-06 09:10:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (598, 575) | 현재 총 3개
+2026-07-06 09:10:01 | DEBUG    | visualization.drawer:_mouse_callback:31 | 꼭짓점 취소: [598, 575]
+2026-07-06 09:10:02 | DEBUG    | visualization.drawer:_mouse_callback:31 | 꼭짓점 취소: [757, 546]
+2026-07-06 09:10:03 | DEBUG    | visualization.drawer:_mouse_callback:31 | 꼭짓점 취소: [712, 518]
+2026-07-06 09:10:03 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (755, 460) | 현재 총 1개
+2026-07-06 09:10:03 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (745, 512) | 현재 총 2개
+2026-07-06 09:10:04 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (781, 521) | 현재 총 3개
+2026-07-06 09:10:04 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (783, 468) | 현재 총 4개
+2026-07-06 09:10:05 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (760, 464) | 현재 총 5개
+2026-07-06 09:10:05 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 09:10:06 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 09:10:06 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 09:10:06 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 09:10:06 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 09:10:06 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 09:10:06 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 09:10:06 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 09:10:09 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (825, 522), 위험등급: high)
+2026-07-06 09:10:09 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_091009.jpg
+2026-07-06 09:10:09 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#1 → 사용자 위험구역 1
+2026-07-06 09:10:09 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#2 → 사용자 위험구역 1 (위치: (683, 526), 위험등급: high)
+2026-07-06 09:10:09 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_drawn-zone-1_20260706_091009.jpg
+2026-07-06 09:10:09 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#2 → 사용자 위험구역 1
+2026-07-06 09:10:12 | INFO     | processing.intrusion_detector:check_intrusions:261 | ✅ 이탈 감지: 작업자#2 ← 사용자 위험구역 1 (체류시간: 2.2초)
+2026-07-06 09:10:12 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#4 → 사용자 위험구역 1 (위치: (847, 523), 위험등급: high)
+2026-07-06 09:10:12 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: exited 작업자#2 → 사용자 위험구역 1
+2026-07-06 09:10:12 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker4_drawn-zone-1_20260706_091012.jpg
+2026-07-06 09:10:12 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#4 → 사용자 위험구역 1
+2026-07-06 09:10:20 | INFO     | processing.intrusion_detector:check_intrusions:261 | ✅ 이탈 감지: 작업자#2 ← 사용자 위험구역 1 (체류시간: 5.9초)
+2026-07-06 09:10:20 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: exited 작업자#2 → 사용자 위험구역 1
+2026-07-06 09:10:22 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: staying 작업자#4 → 사용자 위험구역 1
+2026-07-06 09:10:29 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 09:10:31 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: staying 작업자#2 → 사용자 위험구역 1
+2026-07-06 09:10:32 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: staying 작업자#4 → 사용자 위험구역 1
+2026-07-06 09:10:33 | INFO     | processing.intrusion_detector:check_intrusions:261 | ✅ 이탈 감지: 작업자#2 ← 사용자 위험구역 1 (체류시간: 3.1초)
+2026-07-06 09:10:33 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: exited 작업자#2 → 사용자 위험구역 1
+2026-07-06 09:10:34 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#6 → 사용자 위험구역 1 (위치: (829, 521), 위험등급: high)
+2026-07-06 09:10:34 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker6_drawn-zone-1_20260706_091034.jpg
+2026-07-06 09:10:34 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#6 → 사용자 위험구역 1
+2026-07-06 09:10:40 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 287.2ms | 추적: 1.7ms | 침입: 8.9ms | 렌더: 8.0ms | 총: 305.8ms (3.3 FPS)
+2026-07-06 09:10:42 | INFO     | processing.intrusion_detector:check_intrusions:261 | ✅ 이탈 감지: 작업자#2 ← 사용자 위험구역 1 (체류시간: 5.4초)
+2026-07-06 09:10:42 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: exited 작업자#2 → 사용자 위험구역 1
+2026-07-06 09:10:44 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: staying 작업자#6 → 사용자 위험구역 1
+2026-07-06 09:10:48 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 09:10:54 | INFO     | processing.intrusion_detector:check_intrusions:261 | ✅ 이탈 감지: 작업자#2 ← 사용자 위험구역 1 (체류시간: 3.7초)
+2026-07-06 09:10:54 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: exited 작업자#2 → 사용자 위험구역 1
+2026-07-06 09:10:54 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#8 → 사용자 위험구역 1 (위치: (829, 521), 위험등급: high)
+2026-07-06 09:10:54 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker8_drawn-zone-1_20260706_091054.jpg
+2026-07-06 09:10:54 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#8 → 사용자 위험구역 1
+2026-07-06 09:10:54 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: staying 작업자#6 → 사용자 위험구역 1
+2026-07-06 09:10:54 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 09:10:54 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 09:10:54 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-06 09:10:55 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 15)
+2026-07-06 09:10:55 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 145프레임 | 감지: 285.1ms | 추적: 1.6ms | 침입: 6.8ms | 렌더: 8.0ms
+2026-07-06 09:10:55 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 15 | WS: 0 | REST: 0
+2026-07-06 09:10:55 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 10:06:06 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 10:06:06 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 10:06:06 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 10:06:06 | INFO     | __main__:main:171 | 영상 소스: sample.mp4
+2026-07-06 10:06:06 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 10:06:06 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 10:06:06 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 10:06:06 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample.mp4
+2026-07-06 10:06:06 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-06 10:06:06 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 10:06:06 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 10:06:06 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 10:06:06 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 10:06:07 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 10:06:07 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 10:06:07 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 10:06:07 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 10:06:07 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 10:06:07 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 10:06:07 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 10:06:07 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 10:06:07 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 10:06:10 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (745, 458) | 현재 총 1개
+2026-07-06 10:06:10 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (755, 518) | 현재 총 2개
+2026-07-06 10:06:10 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (797, 523) | 현재 총 3개
+2026-07-06 10:06:11 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (789, 462) | 현재 총 4개
+2026-07-06 10:06:11 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (746, 458) | 현재 총 5개
+2026-07-06 10:06:12 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 10:06:12 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 10:06:12 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 10:06:12 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 10:06:12 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 10:06:12 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 10:06:12 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 10:06:12 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 10:06:13 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (825, 522), 위험등급: high)
+2026-07-06 10:06:13 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_100613.jpg
+2026-07-06 10:06:14 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#1 → 사용자 위험구역 1
+2026-07-06 10:06:17 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#4 → 사용자 위험구역 1 (위치: (847, 523), 위험등급: high)
+2026-07-06 10:06:17 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker4_drawn-zone-1_20260706_100617.jpg
+2026-07-06 10:06:17 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#4 → 사용자 위험구역 1
+2026-07-06 10:06:20 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#2 → 사용자 위험구역 1 (위치: (688, 522), 위험등급: high)
+2026-07-06 10:06:20 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_drawn-zone-1_20260706_100620.jpg
+2026-07-06 10:06:20 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#2 → 사용자 위험구역 1
+2026-07-06 10:06:21 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 10:06:21 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 10:06:21 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-06 10:06:22 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 3)
+2026-07-06 10:06:22 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 34프레임 | 감지: 215.5ms | 추적: 1.6ms | 침입: 1.9ms | 렌더: 7.4ms
+2026-07-06 10:06:22 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 3 | WS: 0 | REST: 0
+2026-07-06 10:06:22 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 10:08:24 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 10:08:24 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 10:08:24 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 10:08:24 | INFO     | __main__:main:171 | 영상 소스: sample.mp4
+2026-07-06 10:08:24 | INFO     | __main__:main:172 | YOLO 모델: yolo26m-pose.pt
+2026-07-06 10:08:24 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 10:08:24 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 10:08:24 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample.mp4
+2026-07-06 10:08:24 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-06 10:08:24 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26m-pose.pt (디바이스: cpu)
+2026-07-06 10:08:24 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 10:08:24 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 10:08:24 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 10:08:24 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 10:08:24 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 10:08:24 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 10:08:24 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 10:08:24 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 10:08:24 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 10:08:24 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 10:08:24 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 10:08:24 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 10:08:27 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (752, 456) | 현재 총 1개
+2026-07-06 10:08:27 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (735, 536) | 현재 총 2개
+2026-07-06 10:08:27 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (777, 534) | 현재 총 3개
+2026-07-06 10:08:28 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (772, 464) | 현재 총 4개
+2026-07-06 10:08:28 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (756, 462) | 현재 총 5개
+2026-07-06 10:08:29 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 10:08:29 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 10:08:29 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 10:08:29 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: pose-hybrid, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 10:08:29 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 10:08:29 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 10:08:29 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 10:08:29 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 10:08:34 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#3 → 사용자 위험구역 1 (위치: (682, 526), 위험등급: high)
+2026-07-06 10:08:34 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker3_drawn-zone-1_20260706_100834.jpg
+2026-07-06 10:08:34 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#3 → 사용자 위험구역 1
+2026-07-06 10:08:42 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (803, 506), 위험등급: high)
+2026-07-06 10:08:42 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_100842.jpg
+2026-07-06 10:08:42 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#1 → 사용자 위험구역 1
+2026-07-06 10:08:44 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: staying 작업자#3 → 사용자 위험구역 1
+2026-07-06 10:08:47 | INFO     | processing.intrusion_detector:check_intrusions:261 | ✅ 이탈 감지: 작업자#3 ← 사용자 위험구역 1 (체류시간: 13.1초)
+2026-07-06 10:08:47 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: exited 작업자#3 → 사용자 위험구역 1
+2026-07-06 10:08:47 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 10:08:47 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 10:08:47 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 10:08:47 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-06 10:08:48 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 4)
+2026-07-06 10:08:48 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 66프레임 | 감지: 244.6ms | 추적: 1.0ms | 침입: 0.7ms | 렌더: 5.2ms
+2026-07-06 10:08:48 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 4 | WS: 0 | REST: 0
+2026-07-06 10:08:48 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 10:09:12 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 10:09:12 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 10:09:12 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 10:09:12 | INFO     | __main__:main:171 | 영상 소스: sample4.mp4
+2026-07-06 10:09:12 | INFO     | __main__:main:172 | YOLO 모델: yolo26m-pose.pt
+2026-07-06 10:09:12 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 10:09:12 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 10:09:12 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample4.mp4
+2026-07-06 10:09:12 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample4.mp4 (640x360, 30.0fps, 201프레임)
+2026-07-06 10:09:12 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26m-pose.pt (디바이스: cpu)
+2026-07-06 10:09:12 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 10:09:12 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 10:09:12 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 10:09:13 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 10:09:13 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 10:09:13 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 10:09:13 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 10:09:13 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 10:09:13 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 10:09:13 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 10:09:13 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 10:09:13 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 10:09:17 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (577, 319) | 현재 총 1개
+2026-07-06 10:09:17 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (562, 408) | 현재 총 2개
+2026-07-06 10:09:17 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (608, 420) | 현재 총 3개
+2026-07-06 10:09:17 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (618, 322) | 현재 총 4개
+2026-07-06 10:09:18 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (584, 323) | 현재 총 5개
+2026-07-06 10:09:18 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 10:09:19 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 10:09:19 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 10:09:19 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: pose-hybrid, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 10:09:19 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 10:09:19 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 10:09:19 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 10:09:19 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 10:09:28 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 10:09:31 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 10:09:31 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 10:09:31 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-06 10:09:31 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 0)
+2026-07-06 10:09:31 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 71프레임 | 감지: 148.5ms | 추적: 0.1ms | 침입: 0.0ms | 렌더: 2.3ms
+2026-07-06 10:09:31 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 0 | WS: 0 | REST: 0
+2026-07-06 10:09:31 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 10:13:57 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 10:13:57 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 10:13:57 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 10:13:57 | INFO     | __main__:main:171 | 영상 소스: sample4.mp4
+2026-07-06 10:13:57 | INFO     | __main__:main:172 | YOLO 모델: yolo26m-seg.pt
+2026-07-06 10:13:57 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 10:13:57 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 10:13:57 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample4.mp4
+2026-07-06 10:13:57 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample4.mp4 (640x360, 30.0fps, 201프레임)
+2026-07-06 10:13:57 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26m-seg.pt (디바이스: cpu)
+2026-07-06 10:13:57 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 10:13:57 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 10:13:57 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 10:13:57 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 10:13:57 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 10:13:57 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 10:13:57 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 10:13:57 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 10:13:57 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 10:13:57 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 10:13:57 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 10:13:57 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 10:13:59 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (551, 291) | 현재 총 1개
+2026-07-06 10:14:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (537, 408) | 현재 총 2개
+2026-07-06 10:14:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (609, 429) | 현재 총 3개
+2026-07-06 10:14:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (610, 300) | 현재 총 4개
+2026-07-06 10:14:00 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (574, 294) | 현재 총 5개
+2026-07-06 10:14:01 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 10:14:01 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 10:14:01 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 10:14:01 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: segment, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 10:14:01 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 10:14:01 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 10:14:01 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 10:14:01 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 10:14:16 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 10:14:23 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 10:14:23 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 10:14:23 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-06 10:14:24 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 0)
+2026-07-06 10:14:24 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 93프레임 | 감지: 217.8ms | 추적: 0.8ms | 침입: 0.7ms | 렌더: 1.9ms
+2026-07-06 10:14:24 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 0 | WS: 0 | REST: 0
+2026-07-06 10:14:24 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 10:14:39 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 10:14:39 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 10:14:39 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 10:14:39 | INFO     | __main__:main:171 | 영상 소스: sample4.mp4
+2026-07-06 10:14:39 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 10:14:39 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 10:14:39 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 10:14:39 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample4.mp4
+2026-07-06 10:14:39 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample4.mp4 (640x360, 30.0fps, 201프레임)
+2026-07-06 10:14:39 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 10:14:39 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 10:14:39 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 10:14:39 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 10:14:39 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 10:14:39 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 10:14:39 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 10:14:39 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 10:14:39 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 10:14:39 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 10:14:39 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 10:14:39 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 10:14:39 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 10:14:41 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (418, 309) | 현재 총 1개
+2026-07-06 10:14:42 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (413, 496) | 현재 총 2개
+2026-07-06 10:14:42 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (529, 496) | 현재 총 3개
+2026-07-06 10:14:43 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (605, 299) | 현재 총 4개
+2026-07-06 10:14:43 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (413, 321) | 현재 총 5개
+2026-07-06 10:14:44 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 10:14:44 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 10:14:44 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 10:14:44 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 10:14:44 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 10:14:44 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 10:14:44 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 10:14:44 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 10:14:46 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (593, 387), 위험등급: high)
+2026-07-06 10:14:46 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_101446.jpg
+2026-07-06 10:14:46 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#1 → 사용자 위험구역 1
+2026-07-06 10:14:48 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 10:14:50 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#2 → 사용자 위험구역 1 (위치: (593, 387), 위험등급: high)
+2026-07-06 10:14:50 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_drawn-zone-1_20260706_101450.jpg
+2026-07-06 10:14:50 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#2 → 사용자 위험구역 1
+2026-07-06 10:14:51 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 47.5ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 2.2ms | 총: 50.2ms (19.9 FPS)
+2026-07-06 10:14:51 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 10:14:51 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 10:14:51 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-06 10:14:51 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 2)
+2026-07-06 10:14:51 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 100프레임 | 감지: 47.5ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 2.2ms
+2026-07-06 10:14:51 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 2 | WS: 0 | REST: 0
+2026-07-06 10:14:51 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 10:17:01 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 10:17:01 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 10:17:01 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 10:17:01 | INFO     | __main__:main:171 | 영상 소스: sample.mp4
+2026-07-06 10:17:01 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 10:17:01 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 10:17:01 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 10:17:01 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample.mp4
+2026-07-06 10:17:01 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-06 10:17:01 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 10:17:01 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 10:17:01 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 10:17:01 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 10:17:01 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 10:17:01 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 10:17:01 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 10:17:01 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 10:17:01 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 10:17:01 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 10:17:01 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 10:17:01 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 10:17:01 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 10:17:03 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (751, 432) | 현재 총 1개
+2026-07-06 10:17:04 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (758, 541) | 현재 총 2개
+2026-07-06 10:17:04 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (776, 547) | 현재 총 3개
+2026-07-06 10:17:04 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (780, 448) | 현재 총 4개
+2026-07-06 10:17:05 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (760, 441) | 현재 총 5개
+2026-07-06 10:17:05 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 10:17:06 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 10:17:06 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 10:17:06 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 10:17:06 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 10:17:06 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 10:17:06 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 10:17:06 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 10:17:06 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (825, 522), 위험등급: high)
+2026-07-06 10:17:06 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_101706.jpg
+2026-07-06 10:17:06 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#1 → 사용자 위험구역 1
+2026-07-06 10:17:07 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#4 → 사용자 위험구역 1 (위치: (847, 523), 위험등급: high)
+2026-07-06 10:17:07 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker4_drawn-zone-1_20260706_101707.jpg
+2026-07-06 10:17:07 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#4 → 사용자 위험구역 1
+2026-07-06 10:17:10 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 10:17:11 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#6 → 사용자 위험구역 1 (위치: (829, 521), 위험등급: high)
+2026-07-06 10:17:11 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker6_drawn-zone-1_20260706_101711.jpg
+2026-07-06 10:17:11 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#6 → 사용자 위험구역 1
+2026-07-06 10:17:12 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 49.9ms | 추적: 0.4ms | 침입: 0.4ms | 렌더: 2.5ms | 총: 53.2ms (18.8 FPS)
+2026-07-06 10:17:14 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 10:17:15 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#8 → 사용자 위험구역 1 (위치: (829, 521), 위험등급: high)
+2026-07-06 10:17:15 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker8_drawn-zone-1_20260706_101715.jpg
+2026-07-06 10:17:15 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#8 → 사용자 위험구역 1
+2026-07-06 10:17:19 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 10:17:19 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (200프레임) | 감지: 49.0ms | 추적: 0.4ms | 침입: 0.4ms | 렌더: 2.4ms | 총: 52.2ms (19.2 FPS)
+2026-07-06 10:17:20 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#10 → 사용자 위험구역 1 (위치: (829, 521), 위험등급: high)
+2026-07-06 10:17:20 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker10_drawn-zone-1_20260706_101720.jpg
+2026-07-06 10:17:20 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#10 → 사용자 위험구역 1
+2026-07-06 10:17:23 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 10:17:24 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#12 → 사용자 위험구역 1 (위치: (829, 521), 위험등급: high)
+2026-07-06 10:17:24 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker12_drawn-zone-1_20260706_101724.jpg
+2026-07-06 10:17:24 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#12 → 사용자 위험구역 1
+2026-07-06 10:17:26 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (300프레임) | 감지: 48.7ms | 추적: 0.4ms | 침입: 0.4ms | 렌더: 2.4ms | 총: 51.9ms (19.2 FPS)
+2026-07-06 10:17:27 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 10:17:28 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#14 → 사용자 위험구역 1 (위치: (829, 521), 위험등급: high)
+2026-07-06 10:17:28 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker14_drawn-zone-1_20260706_101728.jpg
+2026-07-06 10:17:28 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#14 → 사용자 위험구역 1
+2026-07-06 10:17:31 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 10:17:32 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 10:17:32 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 10:17:32 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-06 10:17:32 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 7)
+2026-07-06 10:17:32 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 390프레임 | 감지: 48.6ms | 추적: 0.4ms | 침입: 0.4ms | 렌더: 2.4ms
+2026-07-06 10:17:32 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 7 | WS: 0 | REST: 0
+2026-07-06 10:17:32 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 10:17:38 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 10:17:38 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 10:17:38 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 10:17:38 | INFO     | __main__:main:171 | 영상 소스: sample2.mp4
+2026-07-06 10:17:38 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 10:17:38 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 10:17:38 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 10:17:38 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample2.mp4
+2026-07-06 10:17:38 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample2.mp4 (720x1280, 24.0fps, 240프레임)
+2026-07-06 10:17:38 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 10:17:38 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 10:17:38 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 10:17:38 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 10:17:38 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 10:17:38 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 10:17:38 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 10:17:38 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 10:17:38 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 10:17:38 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 10:17:38 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 10:17:38 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 10:17:38 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 10:17:41 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (350, 611) | 현재 총 1개
+2026-07-06 10:17:41 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (359, 657) | 현재 총 2개
+2026-07-06 10:17:41 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (595, 682) | 현재 총 3개
+2026-07-06 10:17:42 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (616, 632) | 현재 총 4개
+2026-07-06 10:17:43 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (337, 584) | 현재 총 5개
+2026-07-06 10:17:43 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (293, 606) | 현재 총 6개
+2026-07-06 10:17:44 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (209, 574) | 현재 총 7개
+2026-07-06 10:17:45 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (198, 631) | 현재 총 8개
+2026-07-06 10:17:46 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (394, 669) | 현재 총 9개
+2026-07-06 10:17:46 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (682, 701) | 현재 총 10개
+2026-07-06 10:17:46 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (735, 603) | 현재 총 11개
+2026-07-06 10:17:47 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (117, 574) | 현재 총 12개
+2026-07-06 10:17:48 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (96, 629) | 현재 총 13개
+2026-07-06 10:17:48 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (409, 677) | 현재 총 14개
+2026-07-06 10:17:49 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 10:17:49 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 10:17:49 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 10:17:49 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 10:17:49 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 10:17:49 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 10:17:49 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 10:17:49 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 10:17:49 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (491, 595), 위험등급: high)
+2026-07-06 10:17:49 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_101749.jpg
+2026-07-06 10:17:49 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#1 → 사용자 위험구역 1
+2026-07-06 10:17:56 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 47.7ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 2.4ms | 총: 50.7ms (19.7 FPS)
+2026-07-06 10:17:59 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 10:17:59 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 10:17:59 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-06 10:17:59 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 1)
+2026-07-06 10:17:59 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 149프레임 | 감지: 47.6ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 2.4ms
+2026-07-06 10:17:59 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 1 | WS: 0 | REST: 0
+2026-07-06 10:17:59 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 10:18:02 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 10:18:02 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 10:18:02 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 10:18:02 | INFO     | __main__:main:171 | 영상 소스: sample2.mp4
+2026-07-06 10:18:02 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 10:18:02 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 10:18:02 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 10:18:02 | INFO     | processing.video_source:create_video_source:258 | 파일 소스 생성: sample2.mp4
+2026-07-06 10:18:02 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample2.mp4 (720x1280, 24.0fps, 240프레임)
+2026-07-06 10:18:02 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 10:18:02 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 10:18:02 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 10:18:02 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 10:18:02 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 10:18:02 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 10:18:02 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 10:18:02 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 10:18:02 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 10:18:02 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 10:18:02 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 10:18:02 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 10:18:02 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 10:18:05 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (315, 617) | 현재 총 1개
+2026-07-06 10:18:05 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (321, 685) | 현재 총 2개
+2026-07-06 10:18:05 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (591, 701) | 현재 총 3개
+2026-07-06 10:18:06 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (580, 640) | 현재 총 4개
+2026-07-06 10:18:06 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (297, 623) | 현재 총 5개
+2026-07-06 10:18:07 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 10:18:07 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 10:18:07 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 10:18:07 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 10:18:07 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 10:18:07 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 10:18:07 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 10:18:07 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 10:18:13 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (635, 636), 위험등급: high)
+2026-07-06 10:18:13 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_101813.jpg
+2026-07-06 10:18:14 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#1 → 사용자 위험구역 1
+2026-07-06 10:18:14 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 47.7ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 1.5ms | 총: 49.7ms (20.1 FPS)
+2026-07-06 10:18:18 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 10:18:18 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 10:18:18 | INFO     | processing.video_source:release:135 | 영상 소스 해제됨
+2026-07-06 10:18:19 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 1)
+2026-07-06 10:18:19 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 161프레임 | 감지: 47.6ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 1.8ms
+2026-07-06 10:18:19 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 1 | WS: 0 | REST: 0
+2026-07-06 10:18:19 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 15:18:37 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 15:18:37 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 15:18:37 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 15:18:37 | INFO     | __main__:main:171 | 영상 소스: 0
+2026-07-06 15:18:37 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 15:18:37 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 15:18:37 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 15:18:37 | INFO     | processing.video_source:create_video_source:350 | 웹캠 소스 생성: 디바이스 인덱스 0
+2026-07-06 15:18:37 | ERROR    | processing.video_source:open:264 | 웹캠 디바이스를 열 수 없습니다: 인덱스 0
+2026-07-06 15:18:37 | ERROR    | __main__:main:190 | 영상 소스 열기 실패. 프로그램을 종료합니다.
+2026-07-06 15:19:32 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 15:19:32 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 15:19:32 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 15:19:32 | INFO     | __main__:main:171 | 영상 소스: 0
+2026-07-06 15:19:32 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 15:19:32 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 15:19:32 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 15:19:32 | INFO     | processing.video_source:create_video_source:350 | 웹캠 소스 생성: 디바이스 인덱스 0
+2026-07-06 15:19:33 | INFO     | processing.video_source:open:276 | 웹캠 소스 연결 성공: 디바이스 인덱스 0 (1920x1080, 30.0fps)
+2026-07-06 15:19:33 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 15:19:34 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 15:19:34 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 15:19:34 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 15:19:34 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 15:19:34 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 15:19:34 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 15:19:34 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 15:19:34 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 15:19:34 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 15:19:34 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 15:19:34 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 15:19:34 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 15:19:39 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (800, 434) | 현재 총 1개
+2026-07-06 15:19:40 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (795, 459) | 현재 총 2개
+2026-07-06 15:19:41 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (969, 457) | 현재 총 3개
+2026-07-06 15:19:41 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (904, 612) | 현재 총 4개
+2026-07-06 15:19:42 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (761, 541) | 현재 총 5개
+2026-07-06 15:19:42 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (817, 425) | 현재 총 6개
+2026-07-06 15:19:42 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 15:19:43 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 15:19:43 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 15:19:43 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 15:19:43 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 15:19:43 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 15:19:43 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 15:19:43 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 15:19:48 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (615, 716), 위험등급: high)
+2026-07-06 15:19:48 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_151948.jpg
+2026-07-06 15:19:48 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#1 → 사용자 위험구역 1
+2026-07-06 15:19:50 | INFO     | processing.intrusion_detector:check_intrusions:261 | ✅ 이탈 감지: 작업자#1 ← 사용자 위험구역 1 (체류시간: 1.4초)
+2026-07-06 15:19:50 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: exited 작업자#1 → 사용자 위험구역 1
+2026-07-06 15:19:54 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 67.8ms | 추적: 0.9ms | 침입: 0.3ms | 렌더: 2.0ms | 총: 71.0ms (14.1 FPS)
+2026-07-06 15:20:04 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (200프레임) | 감지: 60.0ms | 추적: 0.6ms | 침입: 0.3ms | 렌더: 1.8ms | 총: 62.7ms (15.9 FPS)
+2026-07-06 15:20:14 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (300프레임) | 감지: 59.7ms | 추적: 0.5ms | 침입: 0.3ms | 렌더: 1.8ms | 총: 62.3ms (16.0 FPS)
+2026-07-06 15:20:18 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 15:20:18 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 15:20:18 | INFO     | processing.video_source:release:311 | 웹캠 소스 해제됨: 인덱스 0
+2026-07-06 15:20:18 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 2)
+2026-07-06 15:20:18 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 326프레임 | 감지: 61.5ms | 추적: 0.5ms | 침입: 0.3ms | 렌더: 1.9ms
+2026-07-06 15:20:18 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 2 | WS: 0 | REST: 0
+2026-07-06 15:20:18 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 15:20:31 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 15:20:31 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 15:20:31 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 15:20:31 | INFO     | __main__:main:171 | 영상 소스: 0
+2026-07-06 15:20:31 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 15:20:31 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 15:20:31 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 15:20:31 | INFO     | processing.video_source:create_video_source:350 | 웹캠 소스 생성: 디바이스 인덱스 0
+2026-07-06 15:20:31 | INFO     | processing.video_source:open:276 | 웹캠 소스 연결 성공: 디바이스 인덱스 0 (1920x1080, 30.0fps)
+2026-07-06 15:20:31 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 15:20:31 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 15:20:31 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 15:20:31 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 15:20:31 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 15:20:31 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 15:20:31 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 15:20:31 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 15:20:31 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 15:20:31 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 15:20:31 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 15:20:31 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 15:20:31 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 15:20:35 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (740, 164) | 현재 총 1개
+2026-07-06 15:20:35 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (716, 649) | 현재 총 2개
+2026-07-06 15:20:36 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (1027, 695) | 현재 총 3개
+2026-07-06 15:20:36 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (1023, 171) | 현재 총 4개
+2026-07-06 15:20:37 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (739, 148) | 현재 총 5개
+2026-07-06 15:20:37 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 15:20:37 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 15:20:37 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 15:20:37 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 15:20:37 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 15:20:37 | INFO     | communication.event_sender:start:177 | 이벤트 전송기 시작됨
+2026-07-06 15:20:37 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 15:20:37 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 15:20:38 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (543, 716), 위험등급: high)
+2026-07-06 15:20:38 | INFO     | communication.event_sender:_save_snapshot:163 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_152038.jpg
+2026-07-06 15:20:38 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: entered 작업자#1 → 사용자 위험구역 1
+2026-07-06 15:20:44 | INFO     | processing.intrusion_detector:check_intrusions:261 | ✅ 이탈 감지: 작업자#1 ← 사용자 위험구역 1 (체류시간: 6.7초)
+2026-07-06 15:20:44 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: exited 작업자#1 → 사용자 위험구역 1
+2026-07-06 15:20:47 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 53.4ms | 추적: 0.3ms | 침입: 0.3ms | 렌더: 2.4ms | 총: 56.4ms (17.7 FPS)
+2026-07-06 15:20:54 | INFO     | communication.event_sender:_sender_loop:198 | [LOCAL] 이벤트: staying 작업자#1 → 사용자 위험구역 1
+2026-07-06 15:20:57 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 15:20:57 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 15:20:57 | INFO     | processing.video_source:release:311 | 웹캠 소스 해제됨: 인덱스 0
+2026-07-06 15:20:57 | INFO     | communication.event_sender:stop:252 | 이벤트 전송기 중지됨 (전송: 0, 실패: 3)
+2026-07-06 15:20:57 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 166프레임 | 감지: 72.5ms | 추적: 0.5ms | 침입: 0.4ms | 렌더: 3.6ms
+2026-07-06 15:20:57 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 3 | WS: 0 | REST: 0
+2026-07-06 15:20:57 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 15:25:59 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 15:25:59 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 15:25:59 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 15:25:59 | INFO     | __main__:main:171 | 영상 소스: sample.mp4
+2026-07-06 15:25:59 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 15:25:59 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 15:25:59 | INFO     | __main__:main:174 | 디스플레이: OFF
+2026-07-06 15:25:59 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-06 15:25:59 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-06 15:25:59 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 15:25:59 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 15:25:59 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 15:25:59 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 15:25:59 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 위험구역 A (중앙) (demo-zone-1)
+2026-07-06 15:25:59 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 위험구역 B (우측) (demo-zone-2)
+2026-07-06 15:25:59 | INFO     | core.zone_manager:set_demo_zones:230 | 데모 위험구역 2개 생성됨
+2026-07-06 15:25:59 | INFO     | __main__:main:244 | 🔶 데모 모드 활성화 - 기본 위험구역 생성됨
+2026-07-06 15:25:59 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 15:25:59 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 15:25:59 | INFO     | communication.event_sender:start:186 | 이벤트 전송기 시작됨
+2026-07-06 15:25:59 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 15:25:59 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 15:26:00 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 위험구역 A (중앙) (위치: (825, 522), 위험등급: high)
+2026-07-06 15:26:00 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#2 → 위험구역 A (중앙) (위치: (683, 524), 위험등급: high)
+2026-07-06 15:26:00 | INFO     | communication.event_sender:_save_snapshot:172 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_demo-zone-1_20260706_152600.jpg
+2026-07-06 15:26:00 | INFO     | communication.event_sender:_save_snapshot:172 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_demo-zone-1_20260706_152600.jpg
+2026-07-06 15:26:00 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#3 → 위험구역 A (중앙) (위치: (617, 452), 위험등급: high)
+2026-07-06 15:26:00 | INFO     | communication.event_sender:_save_snapshot:172 | 스냅샷 저장: snapshots/intrusion_cam-001_worker3_demo-zone-1_20260706_152600.jpg
+2026-07-06 15:26:00 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#4 → 위험구역 A (중앙) (위치: (847, 523), 위험등급: high)
+2026-07-06 15:26:00 | INFO     | communication.event_sender:_save_snapshot:172 | 스냅샷 저장: snapshots/intrusion_cam-001_worker4_demo-zone-1_20260706_152600.jpg
+2026-07-06 15:26:03 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 15:26:03 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#5 → 위험구역 A (중앙) (위치: (617, 452), 위험등급: high)
+2026-07-06 15:26:03 | INFO     | communication.event_sender:_save_snapshot:172 | 스냅샷 저장: snapshots/intrusion_cam-001_worker5_demo-zone-1_20260706_152603.jpg
+2026-07-06 15:26:04 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#6 → 위험구역 A (중앙) (위치: (829, 521), 위험등급: high)
+2026-07-06 15:26:04 | INFO     | communication.event_sender:_save_snapshot:172 | 스냅샷 저장: snapshots/intrusion_cam-001_worker6_demo-zone-1_20260706_152604.jpg
+2026-07-06 15:26:05 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 52.8ms | 추적: 0.5ms | 침입: 0.0ms | 렌더: 0.0ms | 총: 53.3ms (18.8 FPS)
+2026-07-06 15:26:06 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 15:26:07 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#7 → 위험구역 A (중앙) (위치: (617, 452), 위험등급: high)
+2026-07-06 15:26:07 | INFO     | communication.event_sender:_save_snapshot:172 | 스냅샷 저장: snapshots/intrusion_cam-001_worker7_demo-zone-1_20260706_152607.jpg
+2026-07-06 15:26:07 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#8 → 위험구역 A (중앙) (위치: (829, 521), 위험등급: high)
+2026-07-06 15:26:07 | INFO     | communication.event_sender:_save_snapshot:172 | 스냅샷 저장: snapshots/intrusion_cam-001_worker8_demo-zone-1_20260706_152607.jpg
+2026-07-06 15:32:03 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 15:32:03 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 15:32:03 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 15:32:03 | INFO     | __main__:main:171 | 영상 소스: 0
+2026-07-06 15:32:03 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 15:32:03 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 15:32:03 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 15:32:03 | INFO     | processing.video_source:create_video_source:350 | 웹캠 소스 생성: 디바이스 인덱스 0
+2026-07-06 15:32:03 | INFO     | processing.video_source:open:276 | 웹캠 소스 연결 성공: 디바이스 인덱스 0 (1920x1080, 30.0fps)
+2026-07-06 15:32:03 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 15:32:03 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 15:32:03 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 15:32:03 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 15:32:03 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 15:32:03 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 15:32:03 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 15:32:03 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 15:32:03 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 15:32:03 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 15:32:03 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 15:32:03 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 15:32:03 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 15:32:06 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (719, 418) | 현재 총 1개
+2026-07-06 15:32:07 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (754, 422) | 현재 총 2개
+2026-07-06 15:32:07 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (876, 429) | 현재 총 3개
+2026-07-06 15:32:07 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (825, 562) | 현재 총 4개
+2026-07-06 15:32:07 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (700, 555) | 현재 총 5개
+2026-07-06 15:32:08 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (707, 434) | 현재 총 6개
+2026-07-06 15:32:08 | WARNING  | visualization.drawer:draw_zones:121 | 감지를 시작하려면 최소 1개 이상의 위험구역을 완성 후 저장(Enter)해야 합니다.
+2026-07-06 15:32:10 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 15:32:10 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 15:32:10 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 15:32:10 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 15:32:10 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 15:32:10 | INFO     | communication.event_sender:start:186 | 이벤트 전송기 시작됨
+2026-07-06 15:32:10 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 15:32:10 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 15:32:20 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 53.2ms | 추적: 0.4ms | 침입: 0.2ms | 렌더: 1.5ms | 총: 55.3ms (18.1 FPS)
+2026-07-06 15:32:24 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 15:32:24 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 15:32:24 | INFO     | processing.video_source:release:311 | 웹캠 소스 해제됨: 인덱스 0
+2026-07-06 15:32:24 | INFO     | communication.event_sender:stop:261 | 이벤트 전송기 중지됨 (전송: 0, 실패: 0)
+2026-07-06 15:32:24 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 138프레임 | 감지: 53.0ms | 추적: 0.4ms | 침입: 0.2ms | 렌더: 1.5ms
+2026-07-06 15:32:24 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 0 | 실패: 0 | WS: 0 | REST: 0
+2026-07-06 15:32:24 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 15:32:28 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 15:32:28 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 15:32:28 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 15:32:28 | INFO     | __main__:main:171 | 영상 소스: 0
+2026-07-06 15:32:28 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 15:32:28 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 15:32:28 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 15:32:28 | INFO     | processing.video_source:create_video_source:350 | 웹캠 소스 생성: 디바이스 인덱스 0
+2026-07-06 15:32:28 | INFO     | processing.video_source:open:276 | 웹캠 소스 연결 성공: 디바이스 인덱스 0 (1920x1080, 30.0fps)
+2026-07-06 15:32:28 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 15:32:28 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 15:32:28 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 15:32:28 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 15:32:28 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 15:32:28 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 15:32:28 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 15:32:28 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 15:32:28 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 15:32:28 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 15:32:28 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 15:32:28 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 15:32:28 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 15:32:30 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (694, 273) | 현재 총 1개
+2026-07-06 15:32:31 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (740, 703) | 현재 총 2개
+2026-07-06 15:32:32 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (1036, 703) | 현재 총 3개
+2026-07-06 15:32:33 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (972, 155) | 현재 총 4개
+2026-07-06 15:32:33 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (629, 81) | 현재 총 5개
+2026-07-06 15:32:34 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (662, 334) | 현재 총 6개
+2026-07-06 15:32:34 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (720, 350) | 현재 총 7개
+2026-07-06 15:32:35 | WARNING  | visualization.drawer:draw_zones:121 | 감지를 시작하려면 최소 1개 이상의 위험구역을 완성 후 저장(Enter)해야 합니다.
+2026-07-06 15:32:35 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 15:32:36 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 15:32:36 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 15:32:36 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 15:32:36 | INFO     | communication.event_sender:__init__:68 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 15:32:36 | INFO     | communication.event_sender:start:186 | 이벤트 전송기 시작됨
+2026-07-06 15:32:36 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 15:32:36 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 15:32:36 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (550, 716), 위험등급: high)
+2026-07-06 15:32:36 | INFO     | communication.event_sender:_save_snapshot:172 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_153236.jpg
+2026-07-06 15:32:46 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 53.2ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 2.5ms | 총: 56.3ms (17.8 FPS)
+2026-07-06 15:32:46 | INFO     | communication.event_sender:_sender_loop:207 | [LOCAL] 이벤트: staying 작업자#1 → 사용자 위험구역 1
+2026-07-06 15:32:54 | INFO     | processing.intrusion_detector:check_intrusions:261 | ✅ 이탈 감지: 작업자#1 ← 사용자 위험구역 1 (체류시간: 18.1초)
+2026-07-06 15:32:56 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (200프레임) | 감지: 52.6ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 2.5ms | 총: 55.6ms (18.0 FPS)
+2026-07-06 15:33:06 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (300프레임) | 감지: 52.3ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 2.3ms | 총: 55.2ms (18.1 FPS)
+2026-07-06 15:33:16 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (400프레임) | 감지: 52.4ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 2.4ms | 총: 55.3ms (18.1 FPS)
+2026-07-06 15:33:26 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (500프레임) | 감지: 52.5ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 2.4ms | 총: 55.5ms (18.0 FPS)
+2026-07-06 15:33:35 | INFO     | __main__:main:320 | 'q' 키 입력 - 종료
+2026-07-06 15:33:35 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 15:33:35 | INFO     | processing.video_source:release:311 | 웹캠 소스 해제됨: 인덱스 0
+2026-07-06 15:33:36 | INFO     | communication.event_sender:stop:261 | 이벤트 전송기 중지됨 (전송: 6, 실패: 1)
+2026-07-06 15:33:36 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 589프레임 | 감지: 52.6ms | 추적: 0.3ms | 침입: 0.2ms | 렌더: 2.4ms
+2026-07-06 15:33:36 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 6 | 실패: 1 | WS: 6 | REST: 0
+2026-07-06 15:33:36 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료
+2026-07-06 15:45:29 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 15:45:29 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 15:45:29 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 15:45:29 | INFO     | __main__:main:171 | 영상 소스: sample.mp4
+2026-07-06 15:45:29 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 15:45:29 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 15:45:29 | INFO     | __main__:main:174 | 디스플레이: OFF
+2026-07-06 15:45:29 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-06 15:45:29 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-06 15:45:29 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 15:45:29 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 15:45:29 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 15:45:29 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 15:45:29 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 위험구역 A (중앙) (demo-zone-1)
+2026-07-06 15:45:29 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 위험구역 B (우측) (demo-zone-2)
+2026-07-06 15:45:29 | INFO     | core.zone_manager:set_demo_zones:230 | 데모 위험구역 2개 생성됨
+2026-07-06 15:45:29 | INFO     | __main__:main:244 | 🔶 데모 모드 활성화 - 기본 위험구역 생성됨
+2026-07-06 15:45:29 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 15:45:29 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 15:45:29 | INFO     | communication.event_sender:start:187 | 이벤트 전송기 시작됨
+2026-07-06 15:45:29 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 15:45:29 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 15:45:29 | DEBUG    | communication.event_sender:_maintain_connection:245 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-06 15:45:29 | INFO     | communication.event_sender:_maintain_connection:251 | 🟢 백엔드 웹소켓 상시 연결 수립 성공: ws://localhost:8000/ws/events
+2026-07-06 15:45:29 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 위험구역 A (중앙) (위치: (825, 522), 위험등급: high)
+2026-07-06 15:45:29 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#2 → 위험구역 A (중앙) (위치: (683, 524), 위험등급: high)
+2026-07-06 15:45:29 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_demo-zone-1_20260706_154529.jpg
+2026-07-06 15:45:29 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_demo-zone-1_20260706_154529.jpg
+2026-07-06 15:45:29 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'closed'
+2026-07-06 15:45:29 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#3 → 위험구역 A (중앙) (위치: (617, 452), 위험등급: high)
+2026-07-06 15:45:29 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker3_demo-zone-1_20260706_154529.jpg
+2026-07-06 15:45:30 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#4 → 위험구역 A (중앙) (위치: (847, 523), 위험등급: high)
+2026-07-06 15:45:30 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker4_demo-zone-1_20260706_154530.jpg
+2026-07-06 15:45:30 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'closed'
+2026-07-06 15:45:31 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'closed'
+2026-07-06 15:45:32 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'closed'
+2026-07-06 15:45:32 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 15:45:33 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#5 → 위험구역 A (중앙) (위치: (617, 452), 위험등급: high)
+2026-07-06 15:45:33 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker5_demo-zone-1_20260706_154533.jpg
+2026-07-06 15:45:33 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#6 → 위험구역 A (중앙) (위치: (829, 521), 위험등급: high)
+2026-07-06 15:45:33 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker6_demo-zone-1_20260706_154533.jpg
+2026-07-06 15:45:33 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'closed'
+2026-07-06 15:45:34 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'closed'
+2026-07-06 15:45:34 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 51.9ms | 추적: 0.5ms | 침입: 0.0ms | 렌더: 0.0ms | 총: 52.5ms (19.1 FPS)
+2026-07-06 15:46:25 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 15:46:25 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 15:46:25 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 15:46:25 | INFO     | __main__:main:171 | 영상 소스: sample.mp4
+2026-07-06 15:46:25 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 15:46:25 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 15:46:25 | INFO     | __main__:main:174 | 디스플레이: OFF
+2026-07-06 15:46:25 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-06 15:46:25 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-06 15:46:25 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 15:46:25 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 15:46:25 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 15:46:25 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 15:46:25 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 위험구역 A (중앙) (demo-zone-1)
+2026-07-06 15:46:25 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 위험구역 B (우측) (demo-zone-2)
+2026-07-06 15:46:25 | INFO     | core.zone_manager:set_demo_zones:230 | 데모 위험구역 2개 생성됨
+2026-07-06 15:46:25 | INFO     | __main__:main:244 | 🔶 데모 모드 활성화 - 기본 위험구역 생성됨
+2026-07-06 15:46:25 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 15:46:25 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 15:46:25 | INFO     | communication.event_sender:start:187 | 이벤트 전송기 시작됨
+2026-07-06 15:46:25 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 15:46:25 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 15:46:25 | DEBUG    | communication.event_sender:_maintain_connection:245 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-06 15:46:25 | INFO     | communication.event_sender:_maintain_connection:251 | 🟢 백엔드 웹소켓 상시 연결 수립 성공: ws://localhost:8000/ws/events
+2026-07-06 15:46:26 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 위험구역 A (중앙) (위치: (825, 522), 위험등급: high)
+2026-07-06 15:46:26 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#2 → 위험구역 A (중앙) (위치: (683, 524), 위험등급: high)
+2026-07-06 15:46:26 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_demo-zone-1_20260706_154626.jpg
+2026-07-06 15:46:26 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_demo-zone-1_20260706_154626.jpg
+2026-07-06 15:46:26 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'open'
+2026-07-06 15:46:26 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#3 → 위험구역 A (중앙) (위치: (617, 452), 위험등급: high)
+2026-07-06 15:46:26 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker3_demo-zone-1_20260706_154626.jpg
+2026-07-06 15:46:26 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#4 → 위험구역 A (중앙) (위치: (847, 523), 위험등급: high)
+2026-07-06 15:46:26 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker4_demo-zone-1_20260706_154626.jpg
+2026-07-06 15:46:27 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'open'
+2026-07-06 15:46:28 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'open'
+2026-07-06 15:46:29 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'open'
+2026-07-06 15:46:29 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 15:46:30 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#5 → 위험구역 A (중앙) (위치: (617, 452), 위험등급: high)
+2026-07-06 15:46:30 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker5_demo-zone-1_20260706_154630.jpg
+2026-07-06 15:46:30 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'open'
+2026-07-06 15:46:30 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#6 → 위험구역 A (중앙) (위치: (829, 521), 위험등급: high)
+2026-07-06 15:46:30 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker6_demo-zone-1_20260706_154630.jpg
+2026-07-06 15:46:31 | ERROR    | communication.event_sender:_main_async_loop:227 | 비동기 이벤트 전송 처리 예외: 'ClientConnection' object has no attribute 'open'
+2026-07-06 15:46:31 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 58.7ms | 추적: 0.5ms | 침입: 0.0ms | 렌더: 0.0ms | 총: 59.2ms (16.9 FPS)
+2026-07-06 15:46:33 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 15:46:34 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#7 → 위험구역 A (중앙) (위치: (617, 452), 위험등급: high)
+2026-07-06 15:46:34 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker7_demo-zone-1_20260706_154634.jpg
+2026-07-06 15:49:33 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 15:49:33 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 15:49:33 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 15:49:33 | INFO     | __main__:main:171 | 영상 소스: sample.mp4
+2026-07-06 15:49:33 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 15:49:33 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 15:49:33 | INFO     | __main__:main:174 | 디스플레이: OFF
+2026-07-06 15:49:33 | INFO     | processing.video_source:create_video_source:353 | 파일 소스 생성: sample.mp4
+2026-07-06 15:49:34 | INFO     | processing.video_source:open:89 | 영상 파일 열림: sample.mp4 (640x480, 30.0fps, 64프레임)
+2026-07-06 15:49:34 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 15:49:34 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 15:49:34 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 15:49:34 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 15:49:34 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 위험구역 A (중앙) (demo-zone-1)
+2026-07-06 15:49:34 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 위험구역 B (우측) (demo-zone-2)
+2026-07-06 15:49:34 | INFO     | core.zone_manager:set_demo_zones:230 | 데모 위험구역 2개 생성됨
+2026-07-06 15:49:34 | INFO     | __main__:main:244 | 🔶 데모 모드 활성화 - 기본 위험구역 생성됨
+2026-07-06 15:49:34 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: point, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 15:49:34 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 15:49:34 | INFO     | communication.event_sender:start:187 | 이벤트 전송기 시작됨
+2026-07-06 15:49:34 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 15:49:34 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 15:49:34 | DEBUG    | communication.event_sender:_maintain_connection:245 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-06 15:49:34 | INFO     | communication.event_sender:_maintain_connection:251 | 🟢 백엔드 웹소켓 상시 연결 수립 성공: ws://localhost:8000/ws/events
+2026-07-06 15:49:34 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 위험구역 A (중앙) (위치: (825, 522), 위험등급: high)
+2026-07-06 15:49:34 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#2 → 위험구역 A (중앙) (위치: (683, 524), 위험등급: high)
+2026-07-06 15:49:34 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_demo-zone-1_20260706_154934.jpg
+2026-07-06 15:49:34 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_demo-zone-1_20260706_154934.jpg
+2026-07-06 15:49:34 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#3 → 위험구역 A (중앙) (위치: (617, 452), 위험등급: high)
+2026-07-06 15:49:34 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker3_demo-zone-1_20260706_154934.jpg
+2026-07-06 15:49:34 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#4 → 위험구역 A (중앙) (위치: (847, 523), 위험등급: high)
+2026-07-06 15:49:35 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker4_demo-zone-1_20260706_154934.jpg
+2026-07-06 15:49:37 | INFO     | processing.video_source:read:116 | 영상 반복 재생 시작
+2026-07-06 15:49:38 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#5 → 위험구역 A (중앙) (위치: (617, 452), 위험등급: high)
+2026-07-06 15:49:38 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker5_demo-zone-1_20260706_154938.jpg
+2026-07-06 15:49:38 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#6 → 위험구역 A (중앙) (위치: (829, 521), 위험등급: high)
+2026-07-06 15:49:38 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker6_demo-zone-1_20260706_154938.jpg
+2026-07-06 15:49:39 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 55.5ms | 추적: 0.5ms | 침입: 0.0ms | 렌더: 0.0ms | 총: 56.0ms (17.8 FPS)
+2026-07-06 16:02:36 | INFO     | __main__:main:168 | ============================================================
+2026-07-06 16:02:36 | INFO     | __main__:main:169 | 🎯 실시간 영상 처리 및 위험구역 감지 시스템 시작
+2026-07-06 16:02:36 | INFO     | __main__:main:170 | ============================================================
+2026-07-06 16:02:36 | INFO     | __main__:main:171 | 영상 소스: 0
+2026-07-06 16:02:36 | INFO     | __main__:main:172 | YOLO 모델: yolo26s.pt
+2026-07-06 16:02:36 | INFO     | __main__:main:173 | 카메라 ID: cam-001
+2026-07-06 16:02:36 | INFO     | __main__:main:174 | 디스플레이: ON
+2026-07-06 16:02:36 | INFO     | processing.video_source:create_video_source:350 | 웹캠 소스 생성: 디바이스 인덱스 0
+2026-07-06 16:02:38 | INFO     | processing.video_source:open:276 | 웹캠 소스 연결 성공: 디바이스 인덱스 0 (1920x1080, 30.0fps)
+2026-07-06 16:02:38 | INFO     | core.detector:__init__:55 | YOLO 모델 로딩: yolo26s.pt (디바이스: cpu)
+2026-07-06 16:02:38 | INFO     | core.detector:__init__:58 | PersonDetector 초기화 완료 (confidence=0.35, iou=0.45, img_size=640)
+2026-07-06 16:02:38 | INFO     | core.tracker:__init__:49 | PersonTracker 초기화 완료 (track_thresh=0.25, buffer=30, match_thresh=0.8)
+2026-07-06 16:02:38 | INFO     | core.zone_manager:__init__:63 | DangerZoneManager 초기화 완료 (카메라: cam-001, 폴링 간격: 30초)
+2026-07-06 16:02:38 | INFO     | visualization.drawer:draw_zones:50 | ============================================================
+2026-07-06 16:02:38 | INFO     | visualization.drawer:draw_zones:51 | 🖱️  위험구역 마우스 설정 모드 진입
+2026-07-06 16:02:38 | INFO     | visualization.drawer:draw_zones:52 |    - 마우스 좌클릭 : 꼭짓점 지정
+2026-07-06 16:02:38 | INFO     | visualization.drawer:draw_zones:53 |    - 마우스 우클릭 : 마지막 점 취소 (Undo)
+2026-07-06 16:02:38 | INFO     | visualization.drawer:draw_zones:54 |    - 키보드 [C]    : 현재 그리는 다각형 전체 초기화
+2026-07-06 16:02:38 | INFO     | visualization.drawer:draw_zones:55 |    - 키보드 [Enter]/[Space] : 현재 다각형 완성 및 저장
+2026-07-06 16:02:38 | INFO     | visualization.drawer:draw_zones:56 |    - 키보드 [S]    : 설정 완료 및 감지 프로그램 시작
+2026-07-06 16:02:38 | INFO     | visualization.drawer:draw_zones:57 |    - 키보드 [Q]    : 프로그램 종료
+2026-07-06 16:02:38 | INFO     | visualization.drawer:draw_zones:58 | ============================================================
+2026-07-06 16:02:44 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (711, 274) | 현재 총 1개
+2026-07-06 16:02:44 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (702, 538) | 현재 총 2개
+2026-07-06 16:02:45 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (943, 627) | 현재 총 3개
+2026-07-06 16:02:45 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (947, 288) | 현재 총 4개
+2026-07-06 16:02:45 | DEBUG    | visualization.drawer:_mouse_callback:26 | 꼭짓점 추가: (730, 265) | 현재 총 5개
+2026-07-06 16:02:46 | INFO     | visualization.drawer:draw_zones:110 | 위험구역 저장 완료 (Zone-1)
+2026-07-06 16:02:46 | INFO     | visualization.drawer:draw_zones:118 | 총 1개의 위험구역을 설정하고 감지를 시작합니다.
+2026-07-06 16:02:46 | INFO     | core.zone_manager:add_zone:122 | 위험구역 추가: 사용자 위험구역 1 (drawn-zone-1)
+2026-07-06 16:02:46 | INFO     | processing.intrusion_detector:__init__:94 | IntrusionDetector 초기화 완료 (쿨다운: 10.0초, 방식: overlap, overlap_ratio: 0.2, pose_conf: 0.5)
+2026-07-06 16:02:46 | INFO     | communication.event_sender:__init__:69 | EventSender 초기화 완료 (WS: ws://localhost:8000/ws/events, 스냅샷: True)
+2026-07-06 16:02:46 | INFO     | communication.event_sender:start:187 | 이벤트 전송기 시작됨
+2026-07-06 16:02:46 | INFO     | processing.frame_processor:__init__:57 | FrameProcessor 초기화 완료
+2026-07-06 16:02:46 | INFO     | __main__:main:297 | 🚀 메인 루프 시작 (종료: 'q' 키 또는 Ctrl+C)
+2026-07-06 16:02:46 | DEBUG    | communication.event_sender:_maintain_connection:245 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-06 16:02:46 | WARNING  | communication.event_sender:_maintain_connection:258 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-06 16:02:49 | DEBUG    | communication.event_sender:_maintain_connection:245 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-06 16:02:49 | WARNING  | communication.event_sender:_maintain_connection:258 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-06 16:02:52 | DEBUG    | communication.event_sender:_maintain_connection:245 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-06 16:02:52 | WARNING  | communication.event_sender:_maintain_connection:258 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-06 16:02:55 | DEBUG    | communication.event_sender:_maintain_connection:245 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-06 16:02:55 | WARNING  | communication.event_sender:_maintain_connection:258 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-06 16:02:56 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (100프레임) | 감지: 54.5ms | 추적: 0.4ms | 침입: 0.2ms | 렌더: 1.7ms | 총: 56.7ms (17.6 FPS)
+2026-07-06 16:02:58 | DEBUG    | communication.event_sender:_maintain_connection:245 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-06 16:02:58 | INFO     | communication.event_sender:_maintain_connection:251 | 🟢 백엔드 웹소켓 상시 연결 수립 성공: ws://localhost:8000/ws/events
+2026-07-06 16:03:06 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (200프레임) | 감지: 53.8ms | 추적: 0.4ms | 침입: 0.2ms | 렌더: 1.6ms | 총: 56.0ms (17.8 FPS)
+2026-07-06 16:03:11 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#2 → 사용자 위험구역 1 (위치: (741, 717), 위험등급: high)
+2026-07-06 16:03:11 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker2_drawn-zone-1_20260706_160311.jpg
+2026-07-06 16:03:12 | WARNING  | processing.intrusion_detector:check_intrusions:210 | ⚠️ 침입 감지! 작업자#1 → 사용자 위험구역 1 (위치: (652, 716), 위험등급: high)
+2026-07-06 16:03:12 | INFO     | communication.event_sender:_save_snapshot:173 | 스냅샷 저장: snapshots/intrusion_cam-001_worker1_drawn-zone-1_20260706_160312.jpg
+2026-07-06 16:03:12 | INFO     | processing.intrusion_detector:check_intrusions:261 | ✅ 이탈 감지: 작업자#1 ← 사용자 위험구역 1 (체류시간: 0.5초)
+2026-07-06 16:03:16 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (300프레임) | 감지: 54.0ms | 추적: 0.4ms | 침입: 0.2ms | 렌더: 1.8ms | 총: 56.4ms (17.7 FPS)
+2026-07-06 16:03:26 | INFO     | processing.frame_processor:_log_performance:134 | 📊 성능 통계 (400프레임) | 감지: 54.5ms | 추적: 0.4ms | 침입: 0.2ms | 렌더: 2.0ms | 총: 57.1ms (17.5 FPS)
+2026-07-06 16:03:28 | WARNING  | communication.event_sender:_maintain_connection:262 | 🔌 웹소켓 연결이 예기치 않게 종료되었습니다. 재접속을 시도합니다.
+2026-07-06 16:03:28 | DEBUG    | communication.event_sender:_maintain_connection:245 | 웹소켓 연결 시도 중... (ws://localhost:8000/ws/events)
+2026-07-06 16:03:28 | WARNING  | communication.event_sender:_maintain_connection:258 | ⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... (Multiple exceptions: [Errno 61] Connect call failed ('127.0.0.1', 8000), [Errno 61] Connect call failed ('::1', 8000, 0, 0))
+2026-07-06 16:03:29 | INFO     | __main__:signal_handler:289 | 종료 신호 수신 - 안전하게 종료 중...
+2026-07-06 16:03:29 | INFO     | __main__:main:345 | 시스템 종료 중...
+2026-07-06 16:03:29 | INFO     | processing.video_source:release:311 | 웹캠 소스 해제됨: 인덱스 0
+2026-07-06 16:03:29 | INFO     | communication.event_sender:stop:317 | 이벤트 전송기 중지됨 (전송: 3, 실패: 0)
+2026-07-06 16:03:29 | INFO     | __main__:main:356 | 📊 최종 성능 통계 | 총 423프레임 | 감지: 54.7ms | 추적: 0.4ms | 침입: 0.3ms | 렌더: 2.0ms
+2026-07-06 16:03:29 | INFO     | __main__:main:366 | 📤 이벤트 통계 | 전송: 3 | 실패: 0 | WS: 3 | REST: 0
+2026-07-06 16:03:29 | INFO     | __main__:main:374 | ✅ 시스템 종료 완료

@@ -53,6 +53,7 @@ class EventSender:
         self._running = False
         self._sender_thread: Optional[threading.Thread] = None
         self._ws_connected = False
+        self._ws = None
         self._stats = {
             "total_sent": 0,
             "total_failed": 0,
@@ -82,13 +83,20 @@ class EventSender:
             event: 침입 이벤트
             frame: 현재 프레임 (스냅샷 저장용)
         """
-        # 스냅샷 저장
+        # 스냅샷 저장 및 Base64 인코딩
         snapshot_path = None
+        snapshot_b64 = None
         if self._save_snapshots and frame is not None and event.event_type == IntrusionState.ENTERED:
             snapshot_path = self._save_snapshot(event, frame)
+            if snapshot_path is not None:
+                try:
+                    with open(snapshot_path, "rb") as f:
+                        snapshot_b64 = base64.b64encode(f.read()).decode("utf-8")
+                except Exception as e:
+                    logger.error(f"스냅샷 Base64 변환 실패: {e}")
 
         # 이벤트 데이터 직렬화
-        event_data = self._serialize_event(event, snapshot_path)
+        event_data = self._serialize_event(event, snapshot_path, snapshot_b64)
 
         try:
             self._event_queue.put_nowait(event_data)
@@ -103,7 +111,8 @@ class EventSender:
     def _serialize_event(
         self,
         event: IntrusionEvent,
-        snapshot_path: Optional[str] = None
+        snapshot_path: Optional[str] = None,
+        snapshot_b64: Optional[str] = None
     ) -> dict:
         """이벤트를 전송용 딕셔너리로 직렬화"""
         return {
@@ -124,7 +133,11 @@ class EventSender:
             },
             "confidence": event.confidence,
             "duration": event.duration,
-            "snapshot_path": snapshot_path
+            "snapshot_path": snapshot_path,
+            "snapshot_b64": snapshot_b64,
+            "threat_type": event.threat_type,
+            "keypoints": event.keypoints,
+            "hand_landmarks": event.hand_landmarks
         }
 
     def _save_snapshot(
@@ -132,7 +145,7 @@ class EventSender:
         event: IntrusionEvent,
         frame: np.ndarray
     ) -> Optional[str]:
-        """침입 감지 스냅샷 저장"""
+        """침입 및 위험 상황 감지 스냅샷 저장"""
         try:
             import os
             from datetime import datetime
@@ -140,23 +153,40 @@ class EventSender:
             timestamp_str = datetime.fromtimestamp(event.timestamp).strftime(
                 "%Y%m%d_%H%M%S"
             )
+            
+            prefix = event.threat_type
             filename = (
-                f"intrusion_{self._camera_id}_"
+                f"{prefix}_{self._camera_id}_"
                 f"worker{event.tracker_id}_"
                 f"{event.zone_id}_"
                 f"{timestamp_str}.jpg"
             )
             filepath = os.path.join(self._snapshot_dir, filename)
 
-            # 스냅샷에 침입 정보 오버레이
+            # 스냅샷에 위협 정보 오버레이
             snapshot = frame.copy()
             x1, y1, x2, y2 = map(int, event.bbox)
-            cv2.rectangle(snapshot, (x1, y1), (x2, y2), (0, 0, 255), 3)
+            
+            # 위험 수준에 따라 테두리 색상 선택 (critical: 빨간색, 그 외: 주황색)
+            color = (0, 0, 255) if event.zone_severity == "critical" else (0, 140, 255)
+            cv2.rectangle(snapshot, (x1, y1), (x2, y2), color, 3)
+            
+            # 위협 텍스트 메시지화
+            threat_msg = f"{event.threat_type.upper()}"
+            if event.threat_type == "gesture_x":
+                threat_msg = "GESTURE - Arm Crossed"
+            elif event.threat_type == "gesture_wave":
+                threat_msg = "GESTURE - Help Waving"
+            elif event.threat_type == "fall_down":
+                threat_msg = "EMERGENCY - Worker Fall Down"
+            elif event.threat_type == "intrusion":
+                threat_msg = f"INTRUSION - {event.zone_name}"
+
             cv2.putText(
                 snapshot,
-                f"INTRUSION - Worker#{event.tracker_id} -> {event.zone_name}",
+                f"{threat_msg} (Worker#{event.tracker_id})",
                 (10, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2
+                cv2.FONT_HERSHEY_SIMPLEX, 0.8, color, 2
             )
 
             cv2.imwrite(filepath, snapshot)
@@ -179,44 +209,92 @@ class EventSender:
     def _sender_loop(self) -> None:
         """이벤트 전송 루프 (별도 스레드)"""
         loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            loop.run_until_complete(self._main_async_loop())
+        except Exception as e:
+            logger.error(f"비동기 메인 전송 루프 예외: {e}")
+        finally:
+            loop.close()
+
+    async def _main_async_loop(self) -> None:
+        """비동기 메인 루프: 웹소켓 연결 유지 및 큐 처리"""
+        # 웹소켓 연결 상시 유지 태스크 기동
+        connect_task = asyncio.create_task(self._maintain_connection())
 
         while self._running:
             try:
-                # 큐에서 이벤트 가져오기 (1초 타임아웃)
-                event_data = self._event_queue.get(timeout=1.0)
+                # 동기 큐 get_nowait()을 사용하여 비동기 대기 구현
+                try:
+                    event_data = self._event_queue.get_nowait()
+                except queue.Empty:
+                    await asyncio.sleep(0.1)
+                    continue
 
                 # 전송 시도
-                success = loop.run_until_complete(
-                    self._send_event_async(event_data)
-                )
-
+                success = await self._send_event_async(event_data)
                 if success:
                     self._stats["total_sent"] += 1
                 else:
                     self._stats["total_failed"] += 1
-                    # 로컬 로깅 (fallback)
                     logger.info(
                         f"[LOCAL] 이벤트: {event_data['event_type']} "
                         f"작업자#{event_data['tracker_id']} → "
-                        f"{event_data['zone_name']}"
+                        f"{event_data['zone_name']} "
+                        f"({event_data.get('threat_type', 'intrusion')})"
                     )
 
-            except queue.Empty:
-                continue
             except Exception as e:
-                logger.error(f"이벤트 전송 루프 오류: {e}")
+                logger.error(f"비동기 이벤트 전송 처리 예외: {e}")
+                await asyncio.sleep(1.0)
 
-        loop.close()
+        # 종료 시 소켓 정리 및 백그라운드 태스크 취소
+        connect_task.cancel()
+        try:
+            await connect_task
+        except asyncio.CancelledError:
+            pass
+        await self._close_ws()
+
+    async def _maintain_connection(self) -> None:
+        """웹소켓 커넥션을 상시로 유지하고, 끊어지면 자동 재연결 시도"""
+        import websockets
+
+        while self._running:
+            if self._ws is None or not self._ws_connected:
+                try:
+                    logger.debug(f"웹소켓 연결 시도 중... ({self._ws_url})")
+                    self._ws = await websockets.connect(
+                        self._ws_url,
+                        close_timeout=3
+                    )
+                    self._ws_connected = True
+                    logger.info(f"🟢 백엔드 웹소켓 상시 연결 수립 성공: {self._ws_url}")
+                except ImportError:
+                    logger.error("websockets 라이브러리 미설치 - WebSocket 비활성화")
+                    await asyncio.sleep(10.0)
+                except Exception as e:
+                    self._ws_connected = False
+                    self._ws = None
+                    logger.warning(f"⚠️ 백엔드 웹소켓 연결 실패. 3초 후 재시도... ({e})")
+                    await asyncio.sleep(3.0)
+            else:
+                if self._ws.state.name != "OPEN":
+                    logger.warning("🔌 웹소켓 연결이 예기치 않게 종료되었습니다. 재접속을 시도합니다.")
+                    self._ws_connected = False
+                    self._ws = None
+                else:
+                    await asyncio.sleep(1.0)
 
     async def _send_event_async(self, event_data: dict) -> bool:
         """비동기 이벤트 전송"""
-        # WebSocket 전송 시도
+        # WebSocket 전송 시도 (상시 연결 채널)
         ws_success = await self._send_via_websocket(event_data)
         if ws_success:
             self._stats["ws_sends"] += 1
             return True
 
-        # REST API fallback
+        # WebSocket 실패 시 REST API fallback
         if self._api_client:
             rest_success = await self._api_client.send_event(event_data)
             if rest_success:
@@ -226,23 +304,31 @@ class EventSender:
         return False
 
     async def _send_via_websocket(self, event_data: dict) -> bool:
-        """WebSocket으로 이벤트 전송"""
-        try:
-            import websockets
-
-            async with websockets.connect(
-                self._ws_url, close_timeout=3
-            ) as ws:
-                await ws.send(json.dumps(event_data, ensure_ascii=False))
-                self._ws_connected = True
-                return True
-
-        except ImportError:
-            logger.debug("websockets 라이브러리 미설치 - WebSocket 비활성화")
-            return False
-        except Exception:
+        """상시 연결된 WebSocket 채널을 통해 이벤트 전송"""
+        if not self._ws_connected or self._ws is None or self._ws.state.name != "OPEN":
             self._ws_connected = False
             return False
+
+        try:
+            await self._ws.send(json.dumps(event_data, ensure_ascii=False))
+            return True
+        except Exception as e:
+            logger.warning(f"⚠️ 웹소켓 패킷 송신 실패 (REST Fallback 사용 예정): {e}")
+            self._ws_connected = False
+            self._ws = None
+            return False
+
+    async def _close_ws(self) -> None:
+        """웹소켓 소켓 종료"""
+        if self._ws is not None:
+            try:
+                await self._ws.close()
+                logger.info("🔌 백엔드 웹소켓 상시 세션 안전하게 종료됨")
+            except Exception:
+                pass
+            finally:
+                self._ws = None
+                self._ws_connected = False
 
     def stop(self) -> None:
         """이벤트 전송기 중지"""

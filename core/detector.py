@@ -1,5 +1,5 @@
 """
-YOLOv11 기반 사람(작업자) 감지 모듈
+YOLO26 기반 사람(작업자) 감지 모듈
 """
 
 import numpy as np
@@ -16,14 +16,15 @@ class Detection:
     confidence: float
     class_id: int
     class_name: str
+    keypoints: Optional[np.ndarray] = None    # 포즈 키포인트 (17, 3) (x, y, conf)
 
 
 class PersonDetector:
-    """YOLOv11 기반 사람 감지기"""
+    """YOLO26 기반 사람 감지기"""
 
     def __init__(
         self,
-        model_path: str = "yolo11n.pt",
+        model_path: str = "yolo26n.pt",
         confidence_threshold: float = 0.5,
         iou_threshold: float = 0.45,
         device: str = "auto",
@@ -97,12 +98,18 @@ class PersonDetector:
                     cls_id = int(boxes.cls[i].cpu().numpy())
                     cls_name = self._model.names[cls_id]
 
+                    keypoints = None
+                    if hasattr(result, "keypoints") and result.keypoints is not None:
+                        if len(result.keypoints.data) > i:
+                            keypoints = result.keypoints.data[i].cpu().numpy()
+
                     detections.append(Detection(
                         bbox=(float(bbox[0]), float(bbox[1]),
                               float(bbox[2]), float(bbox[3])),
                         confidence=conf,
                         class_id=cls_id,
-                        class_name=cls_name
+                        class_name=cls_name,
+                        keypoints=keypoints
                     ))
 
         return detections
@@ -130,7 +137,7 @@ class PersonDetector:
 
     @property
     def model_name(self) -> str:
-        return self._model.model_name if hasattr(self._model, 'model_name') else "YOLOv11"
+        return self._model.model_name if hasattr(self._model, 'model_name') else "YOLO26"
 
     @property
     def device(self) -> str:
