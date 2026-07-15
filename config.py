@@ -79,6 +79,13 @@ class EventSettings(BaseSettings):
     pose_conf_threshold: float = Field(default=0.5, description="포즈 키포인트 검출 신뢰도 임계치")
     waving_amplitude_ratio: float = Field(default=0.15, description="손 흔들기 최소 진폭 비율 (어깨 너비 대비)")
     waving_direction_changes: int = Field(default=2, description="손 흔들기 최소 방향 전환 횟수")
+    waving_min_frames: int = Field(default=8, description="손 흔들기 판단을 위해 최소로 필요한 누적 프레임 수")
+    waving_conf_threshold: float = Field(default=0.25, description="손 흔들기 전용 관절 검출 신뢰도 임계값 (낮을수록 민감)")
+    waving_y_ratio: float = Field(default=0.6, description="어깨 기준 손 높이 허용 범위 비율 (클수록 낮은 위치도 허용)")
+    waving_history_frames: int = Field(default=30, description="손 흔들기 궤적 최대 보관 프레임 수")
+    waving_smooth_window: int = Field(default=3, description="이동 평균 스무딩 윈도우 크기 (클수록 떨림에 둔감)")
+    waving_pixel_threshold: float = Field(default=5.0, description="방향 전환 감지 최소 이동 픽셀 (클수록 큰 움직임만 감지)")
+    waving_speed_threshold: float = Field(default=8.0, description="손 흔들기 최소 속도 임계치 (픽셀/프레임)")
     enter_threshold_frames: int = Field(default=3, description="위험 감지 판정에 필요한 최소 연속 프레임 수")
     exit_threshold_frames: int = Field(default=5, description="위험 해제 판정에 필요한 최소 연속 프레임 수")
 

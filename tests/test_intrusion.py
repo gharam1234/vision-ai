@@ -413,19 +413,17 @@ class TestIntrusionDetector:
         assert len(events_pose) == 1
         assert events_pose[0].event_type == IntrusionState.ENTERED
 
-        # 케이스 2: 포즈 감지 실패 (신뢰도 낮음) -> 바박 겹침으로 폴백 작동
-        # x1=50, x2=110, y2=200 -> 발 중앙점은 80(외부)이지만 x:100~110 영역이 겹침
+        # 케이스 2: 포즈 감지 실패 (신뢰도 낮음) → BBox 폴백 제거됨 → 침입 미감지
         worker_fallback = _make_tracked_object(2, 50, 100, 110, 200)
-        # keypoints 가 존재하지만 신뢰도가 0.1로 임계치(0.5) 미달
         bad_keypoints = np.zeros((17, 3), dtype=np.float32)
         bad_keypoints[16] = [80.0, 200.0, 0.1]
         bad_keypoints[15] = [80.0, 200.0, 0.1]
         worker_fallback.keypoints = bad_keypoints
 
         events_fallback = []
-        detector.reset() # 상태 초기화
+        detector.reset()
         for _ in range(IntrusionDetector.ENTER_THRESHOLD_FRAMES):
             events_fallback = detector.check_intrusions([worker_fallback], [self.zone])
 
-        assert len(events_fallback) == 1
-        assert events_fallback[0].event_type == IntrusionState.ENTERED
+        assert len(events_fallback) == 0  # 관절 신뢰도 미달 → 침입 미감지가 정상
+

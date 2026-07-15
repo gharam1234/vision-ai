@@ -154,6 +154,13 @@ class IntrusionDetector:
         pose_conf_threshold: float = 0.4,
         waving_amplitude_ratio: float = 0.15,
         waving_direction_changes: int = 2,
+        waving_min_frames: int = 8,
+        waving_conf_threshold: float = 0.25,
+        waving_y_ratio: float = 0.6,
+        waving_history_frames: int = 30,
+        waving_smooth_window: int = 3,
+        waving_pixel_threshold: float = 5.0,
+        waving_speed_threshold: float = 8.0,
         enter_threshold_frames: int = 3,
         exit_threshold_frames: int = 5
     ):
@@ -167,6 +174,13 @@ class IntrusionDetector:
         # 감도 파라미터 연동
         self.waving_amplitude_ratio = waving_amplitude_ratio
         self.waving_direction_changes = waving_direction_changes
+        self.waving_min_frames = waving_min_frames
+        self.waving_conf_threshold = waving_conf_threshold
+        self.waving_y_ratio = waving_y_ratio
+        self.waving_history_frames = waving_history_frames
+        self.waving_smooth_window = waving_smooth_window
+        self.waving_pixel_threshold = waving_pixel_threshold
+        self.waving_speed_threshold = waving_speed_threshold
         self.enter_threshold_frames = enter_threshold_frames
         self.exit_threshold_frames = exit_threshold_frames
 
@@ -374,61 +388,7 @@ class IntrusionDetector:
                             if point_inside:
                                 break
                     
-                    # ── 단계 C: BBox 전체 ↔ 위험구역 직접 겹침 (최종 보조 판정) ──
-                    if not point_inside:
-                        bx1, by1, bx2, by2 = [int(v) for v in obj.bbox]
-                        bcx, bcy = (bx1 + bx2) // 2, (by1 + by2) // 2
-                        bbox_pts = [(bx1, by1), (bx2, by1), (bx2, by2), (bx1, by2), (bcx, bcy)]
-                        for bp in bbox_pts:
-                            if is_point_in_polygon(bp, zone.polygon):
-                                point_inside = True
-                                step_hit = f"C-bboxpt{bp}"
-                                break
-                        if not point_inside:
-                            bbox_edges = [
-                                ((bx1, by1), (bx2, by1)),
-                                ((bx2, by1), (bx2, by2)),
-                                ((bx2, by2), (bx1, by2)),
-                                ((bx1, by2), (bx1, by1)),
-                            ]
-                            poly_pts = zone.polygon.astype(int).tolist() if hasattr(zone.polygon, 'astype') else list(zone.polygon)
-                            n_poly = len(poly_pts)
-                            for edge_a, edge_b in bbox_edges:
-                                for pi in range(n_poly):
-                                    C = tuple(poly_pts[pi])
-                                    D = tuple(poly_pts[(pi + 1) % n_poly])
-                                    if self._is_segment_intersect(edge_a, edge_b, C, D):
-                                        point_inside = True
-                                        step_hit = f"C-edge({edge_a},{edge_b})x({C},{D})"
-                                        break
-                                if point_inside:
-                                    break
-                        if not point_inside:
-                            poly_pts_check = zone.polygon.astype(int).tolist() if hasattr(zone.polygon, 'astype') else list(zone.polygon)
-                            if len(poly_pts_check) > 0:
-                                px, py = poly_pts_check[0]
-                                if bx1 <= px <= bx2 and by1 <= py <= by2:
-                                    point_inside = True
-                                    step_hit = "C-zoneInBbox"
-                    
                     is_inside = point_inside
-                    
-                    # ── 디버그 출력 (매 30프레임마다 1회) ──
-                    if not hasattr(self, '_debug_counter'):
-                        self._debug_counter = 0
-                    self._debug_counter += 1
-                    if self._debug_counter % 30 == 0:
-                        has_pose = pose_kps is not None
-                        has_hand = hand_lms is not None
-                        bbox_str = f"({int(obj.bbox[0])},{int(obj.bbox[1])},{int(obj.bbox[2])},{int(obj.bbox[3])})"
-                        poly_str = str(zone.polygon[:3].tolist()) + "..." if hasattr(zone.polygon, 'tolist') and len(zone.polygon) > 3 else str(zone.polygon)
-                        logger.debug(
-                            f"🔍 [DEBUG] ID:{obj.tracker_id} | method={self._method} | "
-                            f"bbox={bbox_str} | zone={zone.name} | "
-                            f"has_pose={has_pose} | has_hand={has_hand} | "
-                            f"is_inside={is_inside} | hit={step_hit} | "
-                            f"poly={poly_str}"
-                        )
                 else:
                     is_inside = is_point_in_polygon(foot_point, zone.polygon)
 
@@ -562,11 +522,12 @@ class IntrusionDetector:
                     state.wrist_x_histories[label].pop(0)
             return False
         
-        # 어깨 좌표를 얻을 수 있는지 확인 (Pose)
+        # 제스처 판정 전용 신뢰도 임계값 (ENV: EVENT_WAVING_CONF_THRESHOLD)
+        conf_thresh = min(self.waving_conf_threshold, self._pose_conf_threshold)
+
+        # 어깨 좌표 검출 필수 — 어깨가 안 보이면 판정 불가 (폴백 없음)
         if pose_keypoints is None or len(pose_keypoints) < 13:
             return False
-
-        conf_thresh = self._pose_conf_threshold
         if pose_keypoints[11][2] < conf_thresh or pose_keypoints[12][2] < conf_thresh:
             return False
 
@@ -575,9 +536,9 @@ class IntrusionDetector:
         if shoulder_width == 0:
             return False
 
-        # 얼굴/뺨 근처 높이에서 흔드는 동작도 유연하게 잡을 수 있도록 완화 (어깨 Y + 어깨너비의 35% 만큼 하향)
-        y_threshold = y_shoulder_min + shoulder_width * 0.35
-        
+        # 손 높이 허용 범위 (ENV: EVENT_WAVING_Y_RATIO, Y축은 위로 갈수록 작아짐)
+        y_threshold = y_shoulder_min + shoulder_width * self.waving_y_ratio
+
         active_labels = set()
         any_waved = False
 
@@ -585,7 +546,7 @@ class IntrusionDetector:
             label = hand["label"]  # "Left" or "Right"
             wrist_lm = hand["landmarks"][0]  # Wrist
             
-            # 손목 신뢰도가 있고 높이 기준을 만족할 경우
+            # 완화된 손목 신뢰도 조건 및 높이 기준 적용
             if wrist_lm[2] >= conf_thresh and wrist_lm[1] < y_threshold:
                 active_labels.add(label)
                 
@@ -593,32 +554,43 @@ class IntrusionDetector:
                     state.wrist_x_histories[label] = []
                 state.wrist_x_histories[label].append(wrist_lm[0])
 
-                # 30프레임 제한 (최근 1초 기록)
-                if len(state.wrist_x_histories[label]) > 30:
+                # 최대 히스토리 버퍼 제한 (ENV: EVENT_WAVING_HISTORY_FRAMES)
+                if len(state.wrist_x_histories[label]) > self.waving_history_frames:
                     state.wrist_x_histories[label].pop(0)
 
                 xs = state.wrist_x_histories[label]
-                if len(xs) >= 8:  # 최소한의 데이터 축적 시 연산
-                    # 1. 진폭(Amplitude) 검사 - 어깨 너비의 15% 이상
+                if len(xs) >= self.waving_min_frames:
+                    # 1. 진폭(Amplitude) 검사 (ENV: EVENT_WAVING_AMPLITUDE_RATIO)
                     amplitude = max(xs) - min(xs)
                     if amplitude >= shoulder_width * self.waving_amplitude_ratio:
-                        # 2. 이동 방향 추출
-                        directions = []
-                        for i in range(1, len(xs)):
-                            diff = xs[i] - xs[i-1]
-                            if abs(diff) > 2.0:
-                                directions.append(1 if diff > 0 else -1)
+                        # 1-2. 평균 이동 속도 검사 (ENV: EVENT_WAVING_SPEED_THRESHOLD) - 오탐 방지용 핵심 필터
+                        diffs = [abs(xs[i] - xs[i - 1]) for i in range(1, len(xs))]
+                        avg_speed = sum(diffs) / len(diffs) if diffs else 0.0
+                        if avg_speed >= self.waving_speed_threshold:
+                            # 2. 이동 평균 스무딩 → 미세 떨림 제거 (ENV: EVENT_WAVING_SMOOTH_WINDOW)
+                            window = self.waving_smooth_window
+                            smoothed = [
+                                sum(xs[max(0, i - window + 1):i + 1]) / min(window, i + 1)
+                                for i in range(len(xs))
+                            ]
+                            
+                            # 3. 스무딩된 좌표로 방향 추출 (ENV: EVENT_WAVING_PIXEL_THRESHOLD)
+                            directions = []
+                            for i in range(1, len(smoothed)):
+                                diff = smoothed[i] - smoothed[i - 1]
+                                if abs(diff) > self.waving_pixel_threshold:
+                                    directions.append(1 if diff > 0 else -1)
+ 
+                            # 4. 런렝스 압축 (중복 부호 제거)
+                            compressed_dirs = []
+                            for d in directions:
+                                if not compressed_dirs or compressed_dirs[-1] != d:
+                                    compressed_dirs.append(d)
 
-                        # 3. 런렝스 압축 (중복 부호 제거)
-                        compressed_dirs = []
-                        for d in directions:
-                            if not compressed_dirs or compressed_dirs[-1] != d:
-                                compressed_dirs.append(d)
-
-                        # 4. 방향 전환 횟수 판정
-                        direction_changes = len(compressed_dirs) - 1
-                        if direction_changes >= self.waving_direction_changes:
-                            any_waved = True
+                            # 5. 방향 전환 횟수 판정
+                            direction_changes = len(compressed_dirs) - 1
+                            if direction_changes >= self.waving_direction_changes:
+                                any_waved = True
 
         # 비활성 손들의 히스토리 버퍼 점진적 소거
         for label in ["Left", "Right"]:

@@ -227,6 +227,13 @@ def main():
         pose_conf_threshold=settings.event.pose_conf_threshold,
         waving_amplitude_ratio=settings.event.waving_amplitude_ratio,
         waving_direction_changes=settings.event.waving_direction_changes,
+        waving_min_frames=settings.event.waving_min_frames,
+        waving_conf_threshold=settings.event.waving_conf_threshold,
+        waving_y_ratio=settings.event.waving_y_ratio,
+        waving_history_frames=settings.event.waving_history_frames,
+        waving_smooth_window=settings.event.waving_smooth_window,
+        waving_pixel_threshold=settings.event.waving_pixel_threshold,
+        waving_speed_threshold=settings.event.waving_speed_threshold,
         enter_threshold_frames=settings.event.enter_threshold_frames,
         exit_threshold_frames=settings.event.exit_threshold_frames,
     )
